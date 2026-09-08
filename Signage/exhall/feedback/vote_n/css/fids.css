@@ -1,0 +1,597 @@
+body{
+ /* Location of the image 
+  background-image: url(../img/background.png);*/
+
+  /* Image is centered vertically and horizontally at all times */
+  background-position: center center;
+
+  /* Image doesn't repeat */
+  background-repeat: no-repeat;
+
+  /* Makes the image fixed in the viewport so that it doesn't move when
+     the content height is greater than the image height */
+  background-attachment: fixed;
+
+  /* This is what makes the background image rescale based on its container's size */
+  background-size: cover;
+
+  /* Pick a solid background color that will be displayed while the background image is loading */
+  background-color:#464646;
+
+  /* SHORTHAND CSS NOTATION
+   * background: url(background-photo.jpg) center center cover no-repeat fixed;
+   */
+font-size: 15px;
+font-weight: bold;
+font-family: 'Oswald', Arial, Helvetica;
+padding-top: 80px;
+padding-bottom:0;
+ margin-left: auto;
+margin-right: auto;
+color: #fff;
+width:90%;
+}
+/* For mobile devices */
+@media only screen and (max-width: 767px) {
+  body {
+    /* The file size of this background image is 93% smaller
+     * to improve page load speed on mobile internet connections */
+    background-image: url(../img/background.png);
+  }
+	}
+table.table thead tr.home{
+background-color:transparent;
+color: #33CC33;
+}
+table thead tr.home th{
+font-weight: bold;
+}
+table img {
+  width: 100%;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+table.table tr td{
+vertical-align:middle;
+}
+
+table.home-fids{
+	margin: 0 0 10px;
+	font-size: 22px;
+	width: 100%;
+	color: #EDEDED;
+}
+table img {
+	width: 100%;
+}
+table.home-fids span{
+	font-size: 10px;
+}
+table.home-fids thead tr th{
+	font-size: 16px;
+	font-weight: bold;
+	font-family: 'Oswald', sans-serif;
+}
+
+@media (max-width: 480px) {
+	td.detil,th.detil{
+		display: none;
+	}
+
+}
+.istimewa{background-image:url(../img/excellent.png);}
+.baik{background-image:url(../img/good.png);}
+.cukup{background-image:url(../img/average.png);}
+.buruk{background-image:url(../img/poor.png);}
+
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+
+
+.cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+.cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector-2 input{ margin: 5px 0 0 12px; }
+.cc-selector-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+
+
+/*
+*/
+.istimewa2{background-image:url(../img/excellent.png);}
+.baik2{background-image:url(../img/good.png);}
+.cukup2{background-image:url(../img/average.png);}
+.buruk2{background-image:url(../img/poor.png);}
+.cc-selector2 input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector2-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.cc-selector2-2 input:active +.drinkcard2-cc, .cc-selector2 input:active +.drinkcard2-cc{opacity: .9;}
+.cc-selector2-2 input:checked +.drinkcard2-cc, .cc-selector2 input:checked +.drinkcard2-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard2-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard2-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector2-2 input{ margin: 5px 0 0 12px; }
+.cc-selector2-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+
+/* */
+
+/*
+*/
+.istimewa3{background-image:url(../img/excellent.png);}
+.baik3{background-image:url(../img/good.png);}
+.cukup3{background-image:url(../img/average.png);}
+.buruk3{background-image:url(../img/poor.png);}
+.cc-selector3 input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector3-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.cc-selector3-2 input:active +.drinkcard3-cc, .cc-selector3 input:active +.drinkcard3-cc{opacity: .9;}
+.cc-selector3-2 input:checked +.drinkcard3-cc, .cc-selector3 input:checked +.drinkcard3-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard3-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard3-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector3-2 input{ margin: 5px 0 0 12px; }
+.cc-selector3-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+
+/* */
+
+
+/*
+*/
+.istimewa4{background-image:url(../img/excellent.png);}
+.baik4{background-image:url(../img/good.png);}
+.cukup4{background-image:url(../img/average.png);}
+.buruk4{background-image:url(../img/poor.png);}
+.cc-selector4 input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector4-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.cc-selector4-2 input:active +.drinkcard4-cc, .cc-selector4 input:active +.drinkcard4-cc{opacity: .9;}
+.cc-selector4-2 input:checked +.drinkcard4-cc, .cc-selector4 input:checked +.drinkcard4-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard4-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard4-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector4-2 input{ margin: 5px 0 0 12px; }
+.cc-selector4-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+
+/* */
+
+/*
+*/
+.istimewa5{background-image:url(../img/excellent.png);}
+.baik5{background-image:url(../img/good.png);}
+.cukup5{background-image:url(../img/average.png);}
+.buruk5{background-image:url(../img/poor.png);}
+.cc-selector5 input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector5-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.cc-selector5-2 input:active +.drinkcard5-cc, .cc-selector5 input:active +.drinkcard5-cc{opacity: .9;}
+.cc-selector5-2 input:checked +.drinkcard5-cc, .cc-selector5 input:checked +.drinkcard5-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard5-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard5-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector5-2 input{ margin: 5px 0 0 12px; }
+.cc-selector5-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+
+/* */
+
+
+/*
+*/
+.istimewa6{background-image:url(../img/excellent.png);}
+.baik6{background-image:url(../img/good.png);}
+.cukup6{background-image:url(../img/average.png);}
+.buruk6{background-image:url(../img/poor.png);}
+.cc-selector6 input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector6-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.cc-selector6-2 input:active +.drinkcard6-cc, .cc-selector6 input:active +.drinkcard6-cc{opacity: .9;}
+.cc-selector6-2 input:checked +.drinkcard6-cc, .cc-selector6 input:checked +.drinkcard6-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard6-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard6-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector6-2 input{ margin: 5px 0 0 12px; }
+.cc-selector6-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+
+/* */
+
+/*
+*/
+.istimewa6{background-image:url(../img/excellent.png);}
+.baik6{background-image:url(../img/good.png);}
+.cukup6{background-image:url(../img/average.png);}
+.buruk6{background-image:url(../img/poor.png);}
+.cc-selector6 input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector6-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.cc-selector6-2 input:active +.drinkcard6-cc, .cc-selector6 input:active +.drinkcard6-cc{opacity: .9;}
+.cc-selector6-2 input:checked +.drinkcard6-cc, .cc-selector6 input:checked +.drinkcard6-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard6-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard6-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector6-2 input{ margin: 5px 0 0 12px; }
+.cc-selector6-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+
+/* */
+
+/*
+*/
+.istimewa7{background-image:url(../img/excellent.png);}
+.baik7{background-image:url(../img/good.png);}
+.cukup7{background-image:url(../img/average.png);}
+.buruk7{background-image:url(../img/poor.png);}
+.cc-selector7 input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.cc-selector7-2 input{
+    position:absolute;
+    z-index:999;
+}
+
+.cc-selector7-2 input:active +.drinkcard7-cc, .cc-selector7 input:active +.drinkcard7-cc{opacity: .9;}
+.cc-selector7-2 input:checked +.drinkcard7-cc, .cc-selector7 input:checked +.drinkcard7-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard7-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard7-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+
+/* Extras */
+a:visited{color:#888}
+a{color:#444;text-decoration:none;}
+p{margin-bottom:.3em;}
+* { font-family:monospace; }
+.cc-selector7-2 input{ margin: 5px 0 0 12px; }
+.cc-selector7-2 label{ margin-left: 7px; }
+span.cc{ color:#6d84b4 }
+
+/* */
+
+
+.ghost-button-rounded-corners {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+.ghost-button-rounded-corners:hover,
+.ghost-button-rounded-corners:active {
+  background-color: #fff;
+  color: #000;
+}
+
+hr{
+background-color:#999999;
+border:#000 2px dotted;
+border-style: none none dotted;
+color:#fff;
+}
+
+div#fixedheader {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	color:#CCC;
+	background:#333;
+	padding:10px;
+	/* Theoretically for IE 8 & 9 (more valid) */
+	/* ...but not required as filter works too */
+	/* should come BEFORE filter */
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+
+	/* This works in IE 8 & 9 too */
+	/* ... but also 5, 6, 7 */
+	filter: alpha(opacity=50);
+
+	/* Older than Firefox 0.9 */
+	-moz-opacity:0.5;
+
+	/* Safari 1.x (pre WebKit!) */
+	-khtml-opacity: 0.5;
+
+	/* Modern!
+	/* Firefox 0.9+, Safari 2?, Chrome any?
+	/* Opera 9+, IE 9+ */
+	opacity: 0.5;
+}
+div#fixedfooter {
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	width:100%;
+	color:#CCC;
+	background:#333;
+	padding:7px;
+	/* Theoretically for IE 8 & 9 (more valid) */
+	/* ...but not required as filter works too */
+	/* should come BEFORE filter */
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+
+	/* This works in IE 8 & 9 too */
+	/* ... but also 5, 6, 7 */
+	filter: alpha(opacity=50);
+
+	/* Older than Firefox 0.9 */
+	-moz-opacity:0.5;
+
+	/* Safari 1.x (pre WebKit!) */
+	-khtml-opacity: 0.5;
+
+	/* Modern!
+	/* Firefox 0.9+, Safari 2?, Chrome any?
+	/* Opera 9+, IE 9+ */
+	opacity: 0.5;
+}

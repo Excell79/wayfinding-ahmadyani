@@ -1,0 +1,82 @@
+body{
+ /* Location of the image */
+  background-image: url(../vote/img/background.png);
+  
+  /* Image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Image doesn't repeat */
+  background-repeat: no-repeat;
+  
+  /* Makes the image fixed in the viewport so that it doesn't move when 
+     the content height is greater than the image height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based on its container's size */
+  background-size: cover;
+  
+  /* Pick a solid background color that will be displayed while the background image is loading */
+  background-color:#464646;
+  
+  /* SHORTHAND CSS NOTATION
+   * background: url(background-photo.jpg) center center cover no-repeat fixed;
+   */
+font-size: 15px;
+font-weight: bold;
+font-family: 'Oswald', Arial, Helvetica;
+padding-top: 0;
+padding-bottom:0;
+ margin-left: auto;
+margin-right: auto;
+color: #000;
+width:90%;
+}
+/* For mobile devices */
+@media only screen and (max-width: 767px) {
+  body {
+    /* The file size of this background image is 93% smaller
+     * to improve page load speed on mobile internet connections */
+    background-image: url(../vote/img/background.png);
+  }
+	}
+
+.container {
+}
+
+input {
+  height: 40px;
+  font-size: 22px;
+  margin: 12px 0 20px 0;
+}
+
+ul#layots_list {
+  margin-bottom: 20px;
+}
+.styled-select select {
+   background: #009933;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 1;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+   color:#FFFFFF;
+   }
+.ghost-button-rounded-corners {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+.ghost-button-rounded-corners:hover,
+.ghost-button-rounded-corners:active {
+  background-color: #fff;
+  color: #000;
+}

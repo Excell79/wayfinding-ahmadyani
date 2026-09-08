@@ -1,0 +1,636 @@
+<?php
+// Create database connection using config file
+include_once("config.php");
+
+// Fetch all users data from database
+$result = mysqli_query($mysqli, "SELECT * FROM tenats_fasilitas ORDER BY poss_id DESC");
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>kiopc</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="assets/css/style1.css">
+    <!-- <link rel="stylesheet" href="assets/css/style2.css"> -->
+    <link rel="stylesheet" href="assets/css/style3.css">
+    <link rel="stylesheet" href="assets/css/styleglide1.css">
+    <link rel="stylesheet" href="assets/css/styleglide2.css">
+    <link rel="stylesheet" href="assets/css/stylereset.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 43px;background-color: #0072b8;color: #111010;">
+        <div class="container-fluid"><a class="navbar-brand" href="#" style="color: rgba(245,241,241,0.9);"><i class="fa fa-arrow-circle-left"></i>&nbsp;BACK</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1" style="height: 33px;">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" style="color: #ffffff;" href="#">&nbsp;PT. Angkasa Pura1 | Bandar Udara International Ahmad Yani</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-light navbar-expand-md" style="margin-top: -17px;">
+        <div class="container"><img class="img-fluid" src="assets/img/NIA.png" style="margin-top: 10px;height: 36PX;width: 118px;"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1" style="margin-bottom: -14px;"><a href="#">&nbsp;EN&nbsp;</a><span class="navbar-text">|</span><a href="#">&nbsp;ID</a>
+                <div class="d-table-row float-right ml-auto mt-5 mt-md-0 search-area"><i class="fas fa-search float-left search-icon"></i><input class="float-left float-sm-right custom-search-input" type="search" placeholder="search" style="margin-bottom: -14px;"></div>
+        </div>
+        </div>
+    </nav>
+    <!-- Paradise Slider -->
+	<div id="fw_al_001" class="carousel slide ps_slide_y ps_indicators_y swipe_y ps_easeOutQuint" data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2500">
+
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#fw_al_001" data-slide-to="0" class="active"></li>
+			<li data-target="#fw_al_001" data-slide-to="1"></li>
+			<li data-target="#fw_al_001" data-slide-to="2"></li>
+		</ol>
+
+		<!-- Wrapper For Slides -->
+		<div class="carousel-inner" role="listbox">
+
+			<!-- First Slide -->
+			<div class="carousel-item active">
+
+				<!-- Slide Background -->
+				<img src="assets/img/22.jpg" alt="fw_al_001_01">
+
+				<!-- Slide Text Layer -->
+				<div class="fw_al_001_slide">
+					<h3 data-animation="animated fadeInUp">WELCOME TO AHMAD YANI</h3>
+					<h1 data-animation="animated fadeInUp">THIS IS A  SLIDER</h1>
+					<p data-animation="animated fadeInUp">lorem 2018, ipsum out of sapien, consequa</p>
+					<a href="#" data-animation="animated fadeInUp">iewx donecti</a>
+				</div>
+			</div>
+			<!-- End of Slide -->
+
+			<!-- Second Slide -->
+			<div class="carousel-item">
+
+				<!-- Slide Background -->
+				<img src="assets/img/car1.jpg" alt="fw_al_001_02">
+
+				<!-- Slide Text Layer -->
+				<div class="fw_al_001_slide">
+					<h3 data-animation="animated fadeInUp">wrisus 2018</h3>
+					<h1 data-animation="animated fadeInUp">dolor loborti eros</h1>
+					<p data-animation="animated fadeInUp">lorem 2018, ipsum out of sapien, consequa</p>
+					<a href="#" data-animation="animated fadeInUp">quamr rutrumt</a>
+				</div>
+			</div>
+			<!-- End of Slide -->
+
+			<!-- Third Slide -->
+			<div class="carousel-item">
+
+				<!-- Slide Background -->
+				<img src="assets/img/car2.jpg" alt="fw_al_001_03">
+
+				<!-- Slide Text Layer -->
+				<div class="fw_al_001_slide">
+					<h3 data-animation="animated fadeInUp">wx erat</h3>
+					<h1 data-animation="animated fadeInUp">Aliquamaeuhw</h1>
+					<p data-animation="animated fadeInUp">lorem 2018, ipsum out of sapien, consequa</p>
+					<a href="#" data-animation="animated fadeInUp">felis zw</a>
+				</div>
+			</div>
+			<!-- End of Slide -->
+
+		</div><!-- End of Wrapper For Slides -->
+
+	</div> <!-- End Paradise Slider -->
+
+	
+
+
+ <!-- End --></div>
+    <nav class="navbar navbar-dark navbar-expand-md text-center" style="margin-bottom: 0px;background-color: #0072b8;font-size: 18px;margin-top: 0px;">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav ml-auto" style="background-color: transparent;margin-left: 561px;">
+                <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="#levelsatu" style="margin-right: 100px;">LEVEL I</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="#leveldua" style="margin-right: 100px;">LEVEL II</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link active right-tab" href="#levelmezanine">MEZANINE</a></li>
+            </ul>
+            <ul class="nav navbar-nav ml-auto" style="background-color: transparent;margin-left: 561px;">
+                <li class="nav-item" role="presentation"></li>
+                <li class="nav-item" role="presentation"></li>
+                <li class="nav-item" role="presentation"></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container site-section" id="welcome" style="margin-top: 0px;padding-bottom: 1px;background-color: #f1f1e1;">
+        <h1 style="padding-top: 14px;">Welcome to&nbsp;<br><strong>AHMAD YANI SEMARANG</strong><br></h1>
+    </div>
+    <div class="dark-section"></div>
+    <div class="article-list" id="levelsatu">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">LEVEL I</h2>
+                <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+            </div>
+            <div class="row articles">
+                <div class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img id="myImg" style="width:100%;height:236px;" src="assets/img/trac.jpg" alt="TRAC"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+              
+                </div>
+                <div class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                            <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                                <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                            <div class="modal-body">
+                                                <p class="text-center text-muted">Description </p>
+                                            </div>
+                                            <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                  
+                    </div>
+                <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+    </div>
+    </div>
+
+    <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
+    <div class="article-list" id="leveldua" style="background-color: #f1f1e1;">
+        <div class="container" style="background-color: #f1f1e1;">
+            <div class="intro">
+                <h2 class="text-center">LEVEL II</h2>
+                <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+            </div>
+            <div class="row articles">
+                <div class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img id="myImg" style="width:100%;height:236px;" src="assets/img/trac.jpg" alt="TRAC"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+              
+                </div>
+                <div class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                            <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                                <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                            <div class="modal-body">
+                                                <p class="text-center text-muted">Description </p>
+                                            </div>
+                                            <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                  
+                    </div>
+                <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+    </div>
+    </div>
+
+    <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+    <div class="article-list" id="levelmezanine">
+        <div class="container" style="background-color: #fefffd;">
+            <div class="intro">
+                <h2 class="text-center">MEZANINE</h2>
+                <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+            </div>
+            <div class="row articles">
+                <div class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img id="myImg" style="width:100%;height:236px;" src="assets/img/trac.jpg" alt="TRAC"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+              
+                </div>
+                <div class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                            <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                                <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                            <div class="modal-body">
+                                                <p class="text-center text-muted">Description </p>
+                                            </div>
+                                            <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                  
+                    </div>
+                <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div
+                    class="col-sm-6 col-md-4 item">
+                    <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    <a class="action" href="#">
+                        <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                        <div class="modal-body">
+                                            <p class="text-center text-muted">Description </p>
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div class="col-sm-6 col-md-4 item">
+            <div class="zoomin frame" style="width:100%;height:236px;"><img style="width:100%;height:236px;" src="assets/img/desk.jpg"></div>
+            <h3 class="name">Article Title</h3>
+            <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+            <a class="action" href="#">
+                <div><a><img src="assets/img/panah.png" role="button" data-toggle="modal" href="#myModal"></i></a>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                <div class="modal-body">
+                                    <p class="text-center text-muted">Description </p>
+                                </div>
+                                <div class="modal-footer"><button class="btn btn-primary" type="button">OK</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+
+    <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+<footer>
+        <div class="wrapper">
+            <div class="middle_foot clearfix">
+                <div class="left">
+                    <img src="https://ahmadyani-airport.com/frontend/uploads/defaults/jHVOzH20190405133841.png" onClick="window.location='#https://ahmadyani-airport.com/id'" style="cursor: pointer;" />
+
+                    <p><strong>New&nbsp;Ahmad Yani International Airport</strong><br />
+                    <strong>Telp. Terminal</strong>: +62 24 86000600<br />
+                    <strong>Telp&nbsp;Kantor</strong>:&nbsp;+62 24 7608735<br />
+                    <strong>Email :&nbsp;cc172@ap1.co.id</strong></p>
+
+                </div>
+                <div class="right customer">
+                    <a href="#tel:172">
+                        <img src="https://ahmadyani-airport.com/frontend/images/material/call_foot.png">
+                        <h6>HOTLINE <b>KAMI</b><span>172</span></h6>
+                    </a>
+                    <a href="#mailto:cc172@ap1.co.id">
+                        <img src="https://ahmadyani-airport.com/frontend/images/material/write_foot.png">
+                        <h6>TULIS <b>MASUKAN</b><span>cc172@ap1.co.id</span></h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+        <div style="background-color: #4f9e19;" class="btm_foot">
+            <div class="wrapper clearfix">
+                    <div class="right rfoot">
+                       <img src="https://ahmadyani-airport.com/frontend/images/material/footLogoBottom.png"/>
+                    </div>
+            </div>
+        </div>
+
+    <div class="block_float">
+        <img src="https://ahmadyani-airport.com/frontend/images/material/block_float.png"/>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+
+    
+    <script src="assets/js/jsglide1.js"></script>
+    <script src="assets/js/js1.js"></script>
+    <script src="assets/js/js2.js"></script>
+    <script src="assets/js/js3.js"></script>
+    <script src="assets/js/js4.js"></script>
+</body>
+
+</html>

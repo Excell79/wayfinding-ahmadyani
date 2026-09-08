@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jenderal Ahmad Yani Airport — Colorful Blur Stack</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+            /* =========================================================
+               RESET & VARIABLES
+            ========================================================= */
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+
+            :root {
+                --cream: #fbf7f1;
+                --dark: #075b61;
+                --dark2: #064e53;
+                --teal: #2399a3;
+                --coral: #f26757;
+                --orange: #ffb23f;
+                --lime: #9fc43a;
+                --ink: #111;
+                --white: #fff;
+            }
+
+            html { scroll-behavior: smooth; }
+
+            body {
+                font-family: "Poppins", sans-serif;
+                background: var(--cream);
+                color: var(--ink);
+                overflow-x: hidden;
+            }
+
+            h1 { font-weight: 800; }
+            h2, h3 { font-weight: 700; }
+
+            /* =========================================================
+               LAYOUT ARCHITECTURE
+            ========================================================= */
+            .kiosk-wrapper { display: flex; flex-direction: column; min-height: 100vh; position: relative; z-index: 10; width: 100%; overflow-x: hidden; }
+            .kiosk-visual { width: 100%; position: relative; z-index: 10;}
+            .kiosk-content { width: 100%; display: flex; flex-direction: column; z-index: 10;}
+
+            /* =========================================================
+               NUSANTARA PATTERN (FIXED: full-cover, gak ngotak lagi)
+            ========================================================= */
+            .pattern-corner{
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    width: 480px;
+    height: 480px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.5;
+}
+
+.pattern-corner.top-left{
+    top: -60px;
+    left: -60px;
+    background-image: url('gambar/Home/patern.png');
+}
+
+.pattern-corner.bottom-right{
+    bottom: -60px;
+    right: -60px;
+    background-image: url('gambar/Home/pattern2.png');
+    transform: rotate(180deg);
+}
+            
+
+            /* =========================================================
+               TOP BAR
+            ========================================================= */
+            .topbar {
+                min-height: 64px; background: var(--lime); display: flex; align-items: center; justify-content: space-between;
+                padding: 0 5%; color: white; font-weight: 600; letter-spacing: 0.5px; position: relative; z-index: 20;
+            }
+            .topbar-left { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+            .topbar-logo{
+                height: 65px;
+                width: auto;
+                display: block;
+            }
+            .topbar-right { font-size: 11px; opacity: 0.85; letter-spacing: 1px; font-weight: 500; }
+            .topbar-logo-right{
+                height: 45px;
+                width: auto;
+                display: block;
+            }
+
+            /* =========================================================
+               HERO & WAVE
+            ========================================================= */
+            .hero { position: relative; height: 48vh; min-height: 480px; overflow: hidden; display: flex; align-items: flex-end; }
+            .hero-slider, .hero-slide, .hero-overlay { position: absolute; inset: 0; }
+            .hero-slider { z-index: 0; }
+            .hero-slide { background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; }
+            .hero-slide.active { opacity: 1; }
+            .hero-overlay { z-index: 1; background: linear-gradient(180deg, rgba(7, 91, 97, 0.08) 0%, rgba(7, 91, 97, 0.28) 45%, rgba(7, 91, 97, 0.92) 100%); }
+
+            .hero-content {
+                position: relative;
+                z-index: 3;
+                width: 90%;
+                max-width: 900px;
+                margin: 0 auto;
+                padding-top: 40px;
+                padding-bottom: 90px;
+                color: white;
+            }
+            .welcome { font-size: 12px; font-weight: 700; letter-spacing: 3px; opacity: 0.9; margin-bottom: 10px; }
+            .hero h1 { font-size: clamp(32px, 5vw, 64px); line-height: 1.05; max-width: 800px; letter-spacing: -1.5px; margin-bottom: 8px;}
+            .hero-location { display: flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 12px; font-weight: 500; opacity: 0.85; }
+
+            .hero-wave { position: absolute; bottom: -2px; left: 0; width: 100%; z-index: 10; }
+            .hero-wave svg { width: 100%; height: auto; display: block; }
+
+            /* =========================================================
+               MAIN MENU
+            ========================================================= */
+            .main { position: relative; padding: 20px 0 80px; flex: 1; z-index: 10; overflow: hidden; }
+            .section-head { position: relative; z-index: 2; width: 90%; max-width: 900px; margin: 0 auto 32px; }
+            .eyebrow { color: var(--teal); font-weight: 700; font-size: 12px; letter-spacing: 2px; margin-bottom: 9px; }
+            .section-head h2 { font-size: clamp(28px, 4.5vw, 42px); line-height: 1.2; letter-spacing: -1px; font-weight: 700; }
+
+            /* =========================================================
+               CAROUSEL / BLUR STACK UI
+            ========================================================= */
+            .carousel-wrap { position: relative; z-index: 3; width: 100%; overflow: hidden; }
+
+            .carousel-track {
+                display: flex; gap: 0; overflow-x: auto;
+                padding: 20px calc(50% - min(40vw, 170px)) 50px;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .carousel-track::-webkit-scrollbar { display: none; }
+
+            .slide {
+                flex: 0 0 min(80vw, 340px);
+                scroll-snap-align: center;
+                padding: 0 10px;
+            }
+
+            .slide-inner {
+                height: 350px;
+                border-radius: 28px; padding: 30px;
+                display: flex; flex-direction: column; justify-content: space-between;
+                color: white; position: relative; overflow: hidden;
+                transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                            filter 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+            }
+
+            /* Warna Gradasi */
+            .slide.coral .slide-inner { background: linear-gradient(145deg, #fa7a6b 0%, #b82718 100%); }
+            .slide.teal .slide-inner { background: linear-gradient(145deg, #2bb5c2 0%, #116168 100%); }
+            .slide.orange .slide-inner { background: linear-gradient(145deg, #ffc46b 0%, #c27200 100%); }
+            .slide.lime .slide-inner { background: linear-gradient(145deg, #b3db48 0%, #62821b 100%); }
+
+            .slide-inner::after {
+                content: ""; position: absolute; width: 190px; height: 190px; right: -70px; bottom: -70px;
+                border-radius: 50%; border: 35px solid rgba(255, 255, 255, 0.12);
+                box-shadow: -65px -55px 0 -25px rgba(255, 255, 255, 0.08); pointer-events: none;
+            }
+
+            .slide.is-blurred .slide-inner {
+                transform: scale(0.85);
+                filter: blur(5px);
+                opacity: 0.5;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            }
+
+            .slide.is-centered .slide-inner {
+                transform: scale(1);
+                filter: blur(0);
+                opacity: 1;
+                box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+            }
+
+            .slide-number { position: relative; z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: 2px; opacity: 0.8; }
+            .slide-icon { position: relative; z-index: 2; width: 48px; height: 48px; background: rgba(255, 255, 255, 0.22); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 19px; }
+            .slide h3 { position: relative; z-index: 2; font-size: 22px; font-weight: 700; line-height: 1.2; max-width: 230px; }
+            .slide p { position: relative; z-index: 2; font-size: 13px; font-weight: 400; line-height: 1.5; max-width: 230px; opacity: 0.9; }
+
+            .slide-cta {
+                position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+                background: white; color: var(--ink); padding: 9px 15px; border-radius: 100px;
+                font-size: 11px; font-weight: 600; text-decoration: none;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.2s;
+            }
+            .slide.is-centered .slide-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+
+            .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: -10px; }
+            .arrow-btn { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--ink); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; transition: 0.2s; }
+            .arrow-btn:hover { background: var(--ink); color: white; }
+            .dots { display: flex; gap: 7px; }
+            .dot { width: 7px; height: 7px; border-radius: 50%; background: #ccc; cursor: pointer; transition: 0.3s; }
+            .dot.active { width: 22px; border-radius: 5px; background: var(--ink); }
+
+            /* =========================================================
+               ABOUT & FOOTER
+            ========================================================= */
+            .about-airport { position: relative; background: var(--dark); color: white; padding: 40px 5% 35px; overflow: hidden; }
+            .about-inner { position: relative; z-index: 2; width: 90%; max-width: 900px; margin: auto; }
+
+            .about-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--orange); margin-bottom: 8px; }
+            .about-title { font-size: clamp(24px, 4vw, 32px); font-weight: 700; line-height: 1.2; letter-spacing: -1px; max-width: 650px; margin-bottom: 12px; }
+            .about-description { font-size: 13px; font-weight: 300; line-height: 1.5; opacity: 0.8; max-width: 600px; }
+
+            .airport-data { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-top: 25px; }
+            .data-box { border-top: 1px solid rgba(255, 255, 255, 0.25); padding-top: 12px; }
+            .data-box span { display: block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; opacity: 0.6; margin-bottom: 4px; }
+            .data-box strong { font-size: 20px; font-weight: 700; line-height: 1.1; }
+
+            .airport-bottom { position: relative; padding-top: 25px; margin-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.18); display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+            .airport-name { font-size: clamp(16px, 3vw, 20px); font-weight: 700; line-height: 1.2; }
+            .airport-name span { display: block; font-size: 10px; font-weight: 500; letter-spacing: 2px; opacity: 0.6; margin-top: 6px; }
+            .airport-code { text-align: right; font-size: 38px; font-weight: 800; line-height: 0.9; letter-spacing: 2px; }
+            .airport-code small { display: block; font-size: 9px; font-weight: 500; letter-spacing: 2px; opacity: 0.6; margin-top: 6px; }
+
+            .footer { background: var(--dark2); color: white; padding: 15px 5%; font-size: 10px; font-weight: 400; letter-spacing: 0.7px; opacity: 0.95; }
+            .footer-inner { width: 90%; max-width: 900px; margin: auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
+            .footer span:last-child { opacity: 0.6; }
+
+            /* =========================================================
+               RESPONSIVE LANDSCAPE (duplikat sudah digabung jadi 1)
+            ========================================================= */
+            @media (orientation: landscape) and (min-width: 1024px) {
+                .kiosk-wrapper { flex-direction: row; height: 100vh; overflow: hidden; }
+                .kiosk-visual { width: 42%; height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 15px 0 30px rgba(0,0,0,0.1); z-index: 50; }
+                .hero { flex: 1; height: auto; min-height: 0; }
+                .hero-content { width: 85%; padding-bottom: 80px; }
+                .kiosk-content { width: 58%; height: 100vh; overflow-y: auto; scrollbar-width: thin; }
+                .main { padding: 70px 0; }
+                .section-head { width: 85%; margin: 0 auto 40px; }
+
+                .carousel-track { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 0 7.5%; overflow: visible; }
+                .slide { flex: none; width: 100%; height: auto; padding: 0; }
+
+                .slide.is-blurred .slide-inner { transform: scale(1); filter: blur(0); opacity: 1; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08); }
+                .slide.is-centered .slide-inner { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08); }
+
+                .carousel-controls { display: none; }
+
+                .about-airport { padding: 80px 7.5% 60px; }
+                .about-inner { width: 100%; }
+                .airport-bottom { flex-direction: row; align-items: flex-end; }
+                .airport-code { text-align: right; }
+            }
+    </style>
+  </head>
+
+  <body>
+    <div class="kiosk-wrapper">
+      <!-- PANEL KIRI / ATAS -->
+      <div class="kiosk-visual">
+        <header class="topbar">
+          <div class="topbar-left">
+            <img
+              src="gambar/Home/JenderalAhmadYani.png"
+              alt="Jenderal Ahmad Yani Airport"
+              class="topbar-logo"
+            />
+          </div>
+          <div class="topbar-right">
+            <img
+              src="gambar/Home/jendral.png"
+              alt="InJourney Airports"
+              class="topbar-logo-right"
+            />
+          </div>
+        </header>
+
+        <section class="hero">
+          <div class="hero-slider">
+            <div
+              class="hero-slide active"
+              style="background-image: url(&quot;gambar/Apron.jpeg&quot;)"
+            ></div>
+            <div
+              class="hero-slide"
+              style="background-image: url(&quot;gambar/Apron2.jpeg&quot;)"
+            ></div>
+            <div
+              class="hero-slide"
+              style="background-image: url(&quot;gambar/Domestik.jpeg&quot;)"
+            ></div>
+          </div>
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <div class="welcome">WELCOME TO</div>
+            <h1>JENDERAL AHMAD YANI<br />AIRPORT SEMARANG</h1>
+            <div class="hero-location">
+              <i class="fa-solid fa-location-dot"></i> SEMARANG · CENTRAL JAVA ·
+              INDONESIA
+            </div>
+          </div>
+
+          <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill="#fbf7f1"
+                fill-opacity="1"
+                d="M0,64L60,53.3C120,43,240,21,360,26.7C480,32,600,64,720,69.3C840,75,960,53,1080,42.7C1200,32,1320,32,1380,32L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"
+              ></path>
+            </svg>
+          </div>
+        </section>
+      </div>
+
+      <!-- PANEL KANAN / BAWAH -->
+      <div class="kiosk-content">
+        <main class="main">
+          <div class="pattern-corner top-left"></div>
+          <div class="pattern-corner bottom-right"></div>
+          <div class="section-head">
+            <div class="eyebrow">AIRPORT INFORMATION</div>
+            <h2>Apa yang ingin<br />Anda cari?</h2>
+          </div>
+
+          <section class="carousel-wrap">
+            <div class="carousel-track" id="carouselTrack">
+              <!-- CARD 01 -->
+              <article class="slide coral">
+                <div class="slide-inner">
+                  <div>
+                    <div class="slide-number">01 / FLIGHT</div>
+                    <div class="slide-icon" style="margin-top: 18px">
+                      <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h3>PANDUAN<br />PENERBANGAN</h3>
+                    <p style="margin-top: 12px">
+                      Informasi keberangkatan, kedatangan dan perjalanan Anda.
+                    </p>
+                    <a href="#" class="slide-cta" style="margin-top: 18px"
+                      >Lihat detail <i class="fa-solid fa-arrow-right"></i
+                    ></a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- CARD 02 -->
+              <article class="slide teal">
+                <div class="slide-inner">
+                  <div>
+                    <div class="slide-number">02 / DESTINATION</div>
+                    <div class="slide-icon" style="margin-top: 18px">
+                      <i class="fa-solid fa-compass"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h3>DESTINASI<br />WISATA</h3>
+                    <p style="margin-top: 12px">
+                      Temukan destinasi menarik di Semarang dan Jawa Tengah.
+                    </p>
+                    <a href="#" class="slide-cta" style="margin-top: 18px"
+                      >Jelajahi <i class="fa-solid fa-arrow-right"></i
+                    ></a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- CARD 03 -->
+              <article class="slide orange">
+                <div class="slide-inner">
+                  <div>
+                    <div class="slide-number">03 / WAYFINDING</div>
+                    <div class="slide-icon" style="margin-top: 18px">
+                      <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h3>AIRPORT<br />MAPS</h3>
+                    <p style="margin-top: 12px">
+                      Petunjuk arah dan lokasi fasilitas di dalam bandara.
+                    </p>
+                    <a href="#" class="slide-cta" style="margin-top: 18px"
+                      >Buka peta <i class="fa-solid fa-arrow-right"></i
+                    ></a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- CARD 04 -->
+              <article class="slide lime">
+                <div class="slide-inner">
+                  <div>
+                    <div class="slide-number">04 / EXPERIENCE</div>
+                    <div class="slide-icon" style="margin-top: 18px">
+                      <i class="fa-regular fa-thumbs-up"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h3>FEEDBACK<br />SYSTEM</h3>
+                    <p style="margin-top: 12px">
+                      Sampaikan penilaian, masukan dan pengalaman Anda.
+                    </p>
+                    <a href="#" class="slide-cta" style="margin-top: 18px"
+                      >Berikan feedback <i class="fa-solid fa-arrow-right"></i
+                    ></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="carousel-controls">
+              <button class="arrow-btn" id="prevBtn">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <div class="dots" id="dotsWrap"></div>
+              <button class="arrow-btn" id="nextBtn">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </section>
+        </main>
+
+        <section class="about-airport">
+          <div class="pattern-corner top-left"></div>
+<div class="pattern-corner bottom-right"></div>
+          <div class="about-inner">
+            <div class="about-label">ABOUT THE AIRPORT</div>
+            <h2 class="about-title">
+              Gateway to<br />Semarang & Central Java.
+            </h2>
+            <p class="about-description">
+              Bandar Udara Internasional Jenderal Ahmad Yani menjadi salah satu
+              pintu gerbang transportasi udara bagi Kota Semarang dan wilayah
+              Jawa Tengah.
+            </p>
+            <div class="airport-data">
+              <div class="data-box">
+                <span>IATA CODE</span><strong>SRG</strong>
+              </div>
+              <div class="data-box">
+                <span>ICAO CODE</span><strong>WARS</strong>
+              </div>
+              <div class="data-box">
+                <span>REGION</span><strong>CENTRAL<br />JAVA</strong>
+              </div>
+            </div>
+            <div class="airport-bottom">
+              <div class="airport-name">
+                JENDERAL AHMAD YANI<span>INTERNATIONAL AIRPORT · SEMARANG</span>
+              </div>
+              <div class="airport-code">
+                SRG<small>SEMARANG · INDONESIA</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div class="footer-inner">
+            <span>© 2026 JENDERAL AHMAD YANI AIRPORT</span>
+            <span>INJOURNEY AIRPORTS</span>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+      const track = document.getElementById("carouselTrack");
+      const slides = document.querySelectorAll(".slide");
+      const dotsWrap = document.getElementById("dotsWrap");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      let current = 0;
+
+      slides.forEach((slide, index) => {
+        const dot = document.createElement("div");
+        dot.className = "dot" + (index === 0 ? " active" : "");
+        dot.addEventListener("click", () => {
+          current = index;
+          scrollToSlide();
+        });
+        dotsWrap.appendChild(dot);
+      });
+
+      const dots = document.querySelectorAll(".dot");
+
+      function scrollToSlide() {
+        if (slides[current]) {
+          slides[current].scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest",
+          });
+        }
+      }
+
+      function updateFocus() {
+        if (window.innerWidth >= 1024) {
+          slides.forEach((s) =>
+            s.classList.remove("is-centered", "is-blurred"),
+          );
+          return;
+        }
+
+        const trackCenter =
+          track.getBoundingClientRect().left +
+          track.getBoundingClientRect().width / 2;
+        let closestSlide = null;
+        let minDistance = Infinity;
+        let closestIndex = 0;
+
+        slides.forEach((slide, index) => {
+          const slideCenter =
+            slide.getBoundingClientRect().left +
+            slide.getBoundingClientRect().width / 2;
+          const distance = Math.abs(trackCenter - slideCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestSlide = slide;
+            closestIndex = index;
+          }
+        });
+
+        slides.forEach((slide, index) => {
+          if (slide === closestSlide) {
+            slide.classList.add("is-centered");
+            slide.classList.remove("is-blurred");
+            current = index;
+          } else {
+            slide.classList.remove("is-centered");
+            slide.classList.add("is-blurred");
+          }
+        });
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === current);
+        });
+      }
+
+      let isScrolling;
+      track.addEventListener("scroll", () => {
+        window.cancelAnimationFrame(isScrolling);
+        isScrolling = window.requestAnimationFrame(updateFocus);
+      });
+      window.addEventListener("resize", updateFocus);
+
+      updateFocus();
+
+      nextBtn.addEventListener("click", () => {
+        current = Math.min(current + 1, slides.length - 1);
+        scrollToSlide();
+      });
+      prevBtn.addEventListener("click", () => {
+        current = Math.max(current - 1, 0);
+        scrollToSlide();
+      });
+
+      const heroSlides = document.querySelectorAll(".hero-slide");
+      let heroCurrent = 0;
+      setInterval(() => {
+        heroSlides[heroCurrent].classList.remove("active");
+        heroCurrent = (heroCurrent + 1) % heroSlides.length;
+        heroSlides[heroCurrent].classList.add("active");
+      }, 5000);
+    </script>
+  </body>
+</html>
