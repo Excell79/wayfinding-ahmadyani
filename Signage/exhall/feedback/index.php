@@ -16,6 +16,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     /* DATABASE — include 'koneksi.php' di sini nanti */
 
+/* DATABASE SECTION */
+    require 'koneksi.php'; // Pastiin file koneksi.php udah lu bikin di folder yang sama
+
+    // Tarik data rating, kalau kosong otomatis jadi null
+    $r_waktu = $ratings['waktu_checkin'] ?? null;
+    $r_petugas = $ratings['petugas_checkin'] ?? null;
+    $r_aman = $ratings['keamanan'] ?? null;
+    $r_info = $ratings['informasi'] ?? null;
+    $r_tunggu = $ratings['ruang_tunggu'] ?? null;
+    $r_resto = $ratings['restoran'] ?? null;
+    $r_bersih = $ratings['kebersihan'] ?? null;
+    $r_wayfinding = $ratings['wayfinding'] ?? null;
+
+    // Tembak ke tabel feedback_submission (perhatikan ujungnya pakai kolom 'pesan')
+    $sql = "INSERT INTO feedback_submission 
+            (nama, no_tiket, email, gender, rating_waktu_checkin, rating_petugas_checkin, rating_keamanan, rating_ruang_tunggu, rating_kebersihan, rating_informasi, rating_restoran, rating_wayfinding, feedback_type, pesan) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        $nama, $no_tiket, $email, $gender, 
+        $r_waktu, $r_petugas, $r_aman, $r_tunggu, 
+        $r_bersih, $r_info, $r_resto, $r_wayfinding, 
+        $feedback_type, $feedback
+    ]);
+
     $submitted = true;
 }
 ?>
@@ -153,7 +179,7 @@ footer { text-align:center; padding:0 20px 35px; color:#929D9F; font-size:10px; 
     <div class="success-icon"><i class="fa-solid fa-check"></i></div>
     <h2>Terima kasih!</h2>
     <p>Feedback Anda telah berhasil dikirim dan sangat berarti bagi kami.</p>
-    <a href="../wayfinding/index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+    <a href="../wayfinding/index-fixed.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
 </section>
 
 <?php else: ?>
@@ -176,7 +202,6 @@ footer { text-align:center; padding:0 20px 35px; color:#929D9F; font-size:10px; 
                 <option value="">Pilih</option>
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
-                <option value="Tidak ingin menyebutkan">Tidak ingin menyebutkan</option>
             </select>
         </div>
     </div>
