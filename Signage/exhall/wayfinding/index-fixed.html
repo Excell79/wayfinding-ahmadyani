@@ -20,250 +20,652 @@
     />
 
     <style>
-            /* =========================================================
+      /* =========================================================
                RESET & VARIABLES
             ========================================================= */
-            * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-            :root {
-                --cream: #f6f5f3;
-                --dark: #075b61;
-                --dark2: #064e53;
-                --teal: #2399a3;
-                --coral: #f26757;
-                --orange: #ffb23f;
-                --lime: #9fc43a;
-                --ink: #111;
-                --white: #fff;
-            }
+      :root {
+        --cream: #f6f5f3;
+        --dark: #075b61;
+        --dark2: #064e53;
+        --teal: #2399a3;
+        --coral: #f26757;
+        --orange: #ffb23f;
+        --lime: #9fc43a;
+        --ink: #111;
+        --white: #fff;
+      }
 
-            html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
-            body {
-                font-family: "Poppins", sans-serif;
-                background: var(--cream);
-                color: var(--ink);
-                overflow-x: hidden;
-            }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        overflow-x: hidden;
+      }
 
-            h1 { font-weight: 800; }
-            h2, h3 { font-weight: 700; }
+      h1 {
+        font-weight: 800;
+      }
+      h2,
+      h3 {
+        font-weight: 700;
+      }
 
-            /* =========================================================
+      /* =========================================================
                LAYOUT ARCHITECTURE
             ========================================================= */
-            .kiosk-wrapper { display: flex; flex-direction: column; min-height: 100vh; position: relative; z-index: 10; width: 100%; overflow-x: hidden; }
-            .kiosk-visual { width: 100%; position: relative; z-index: 10;}
-            .kiosk-content { width: 100%; display: flex; flex-direction: column; z-index: 10;}
+      .kiosk-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      .kiosk-visual {
+        width: 100%;
+        position: relative;
+        z-index: 10;
+      }
+      .kiosk-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+      }
 
-            /* =========================================================
+      /* =========================================================
                NUSANTARA PATTERN (FIXED: full-cover, gak ngotak lagi)
             ========================================================= */
-            .pattern-corner{
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-    width: 480px;
-    height: 480px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    opacity: 0.5;
-}
+      .pattern-corner {
+        position: absolute;
+        pointer-events: none;
+        z-index: 0;
+        width: 480px;
+        height: 480px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        opacity: 0.5;
+      }
 
-.pattern-corner.top-left{
-    top: -60px;
-    left: -60px;
-    background-image: url('gambar/Home/patern.png');
-}
+      .pattern-corner.top-left {
+        top: -60px;
+        left: -60px;
+        background-image: url("gambar/Home/patern.png");
+      }
 
-.pattern-corner.bottom-right{
-    bottom: -60px;
-    right: -60px;
-    background-image: url('gambar/Home/pattern2.png');
-    transform: rotate(180deg);
-}
-            
+      .pattern-corner.bottom-right {
+        bottom: -60px;
+        right: -60px;
+        background-image: url("gambar/Home/pattern2.png");
+        transform: rotate(180deg);
+      }
 
-            /* =========================================================
+      /* =========================================================
                TOP BAR
             ========================================================= */
-            .topbar {
-                min-height: 64px; background: var(--lime); display: flex; align-items: center; justify-content: space-between;
-                padding: 0 5%; color: white; font-weight: 600; letter-spacing: 0.5px; position: relative; z-index: 20;
-            }
-            .topbar-left { display: flex; align-items: center; gap: 12px; font-size: 13px; }
-            .topbar-logo{
-                height: 65px;
-                width: auto;
-                display: block;
-            }
-            .topbar-right { font-size: 11px; opacity: 0.85; letter-spacing: 1px; font-weight: 500; }
-            .topbar-logo-right{
-                height: 45px;
-                width: auto;
-                display: block;
-            }
+      .topbar {
+        min-height: 64px;
+        background: var(--lime);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        color: white;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        position: relative;
+        z-index: 20;
+      }
+      .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 13px;
+      }
+      .topbar-logo {
+        height: 65px;
+        width: auto;
+        display: block;
+      }
+      .topbar-right {
+        font-size: 11px;
+        opacity: 0.85;
+        letter-spacing: 1px;
+        font-weight: 500;
+      }
+      .topbar-logo-right {
+        height: 45px;
+        width: auto;
+        display: block;
+      }
 
-            /* =========================================================
+      /* =========================================================
                HERO & WAVE
             ========================================================= */
-            .hero { position: relative; height: 35vh; min-height: 480px; overflow: hidden; display: flex; align-items: flex-end; }
-            .hero-slider, .hero-slide, .hero-overlay { position: absolute; inset: 0; }
-            .hero-slider { z-index: 0; }
-            .hero-slide { background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; }
-            .hero-slide.active { opacity: 1; }
-            .hero-overlay { z-index: 1; background: linear-gradient(180deg, rgba(7, 91, 97, 0.08) 0%, rgba(7, 91, 97, 0.28) 45%, rgba(7, 91, 97, 0.92) 100%); }
+      .hero {
+        position: relative;
+        height: 35vh;
+        min-height: 480px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+      }
+      .hero-slider,
+      .hero-slide,
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+      }
+      .hero-slider {
+        z-index: 0;
+      }
+      .hero-slide {
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+      }
+      .hero-slide.active {
+        opacity: 1;
+      }
+      .hero-overlay {
+        z-index: 1;
+        background: linear-gradient(
+          180deg,
+          rgba(7, 91, 97, 0.08) 0%,
+          rgba(7, 91, 97, 0.28) 45%,
+          rgba(7, 91, 97, 0.92) 100%
+        );
+      }
 
-            .hero-content {
-                position: relative;
-                z-index: 3;
-                width: 100%;
-                max-width: 900px;
-                margin: 0 auto;
-                padding-top: 40px;
-                padding-bottom: 90px;
-                color: white;
-            }
-            .welcome { font-size: 12px; font-weight: 700; letter-spacing: 3px; opacity: 0.9; margin-bottom: 10px; }
-            .hero h1 { font-size: clamp(32px, 5vw, 64px); line-height: 1.05; max-width: 800px; letter-spacing: -1.5px; margin-bottom: 8px;}
-            .hero-location { display: flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 12px; font-weight: 500; opacity: 0.85; }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding-top: 40px;
+        padding-bottom: 90px;
+        color: white;
+      }
+      .welcome {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        opacity: 0.9;
+        margin-bottom: 10px;
+      }
+      .hero h1 {
+        font-size: clamp(32px, 5vw, 64px);
+        line-height: 1.05;
+        max-width: 800px;
+        letter-spacing: -1.5px;
+        margin-bottom: 8px;
+      }
+      .hero-location {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        opacity: 0.85;
+      }
 
-            .hero-wave { position: absolute; bottom: -2px; left: 0; width: 100%; z-index: 10; }
-            .hero-wave svg { width: 100%; height: auto; display: block; }
+      .hero-wave {
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+      }
+      .hero-wave svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
 
-            /* =========================================================
+      /* =========================================================
                MAIN MENU
             ========================================================= */
-            .main { position: relative; padding: 20px 0 80px; flex: 1; z-index: 10; overflow: hidden; }
-            .section-head { position: relative; z-index: 2; width: 90%; max-width: 900px; margin: 0 auto 32px; }
-            .eyebrow { color: var(--teal); font-weight: 700; font-size: 12px; letter-spacing: 2px; margin-bottom: 9px; }
-            .section-head h2 { font-size: clamp(28px, 4.5vw, 42px); line-height: 1.2; letter-spacing: -1px; font-weight: 700; }
+      .main {
+        position: relative;
+        padding: 20px 0 80px;
+        flex: 1;
+        z-index: 10;
+        overflow: hidden;
+      }
+      .section-head {
+        position: relative;
+        z-index: 2;
+        width: 90%;
+        max-width: 900px;
+        margin: 0 auto 32px;
+      }
+      .eyebrow {
+        color: var(--teal);
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 2px;
+        margin-bottom: 9px;
+      }
+      .section-head h2 {
+        font-size: clamp(28px, 4.5vw, 42px);
+        line-height: 1.2;
+        letter-spacing: -1px;
+        font-weight: 700;
+      }
 
-            /* =========================================================
+      /* =========================================================
                CAROUSEL / BLUR STACK UI
             ========================================================= */
-            .carousel-wrap { position: relative; z-index: 3; width: 100%; overflow: hidden; }
+      .carousel-wrap {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        overflow: hidden;
+      }
 
-            .carousel-track {
-                display: flex; gap: 0px; overflow-x: auto;
-                padding: 20px calc(50% - min(40vw, 170px)) 50px;
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                -webkit-overflow-scrolling: touch;
-            }
-            .carousel-track::-webkit-scrollbar { display: none; }
+      .carousel-track {
+        display: flex;
+        gap: 0px;
+        overflow-x: auto;
+        padding: 20px calc(50% - min(40vw, 170px)) 50px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
 
-            .slide {
-                flex: 0 0 min(80vw, 340px);
-                scroll-snap-align: center;
-                padding: 0 10px;
-            }
+      .slide {
+        flex: 0 0 min(80vw, 340px);
+        scroll-snap-align: center;
+        padding: 0 10px;
+      }
 
-            .slide-inner {
-                height: 350px;
-                border-radius: 28px; padding: 30px;
-                display: flex; flex-direction: column; justify-content: space-between;
-                color: white; position: relative; overflow: hidden;
-                transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-                            filter 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
-            }
+      .slide-inner {
+        height: 350px;
+        border-radius: 28px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+          filter 0.4s ease,
+          opacity 0.4s ease,
+          box-shadow 0.4s ease;
+      }
 
-            /* Warna Gradasi */
-            .slide.coral .slide-inner { background: linear-gradient(145deg, #fa7a6b 0%, #b82718 100%); }
-            .slide.teal .slide-inner { background: linear-gradient(145deg, #2bb5c2 0%, #116168 100%); }
-            .slide.orange .slide-inner { background: linear-gradient(145deg, #ffc46b 0%, #c27200 100%); }
-            .slide.lime .slide-inner { background: linear-gradient(145deg, #b3db48 0%, #62821b 100%); }
+      /* Warna Gradasi */
+      .slide.coral .slide-inner {
+        background: linear-gradient(145deg, #fa7a6b 0%, #b82718 100%);
+      }
+      .slide.teal .slide-inner {
+        background: linear-gradient(145deg, #2bb5c2 0%, #116168 100%);
+      }
+      .slide.orange .slide-inner {
+        background: linear-gradient(145deg, #ffc46b 0%, #c27200 100%);
+      }
+      .slide.lime .slide-inner {
+        background: linear-gradient(145deg, #b3db48 0%, #62821b 100%);
+      }
 
-            .slide-inner::after {
-                content: ""; position: absolute; width: 190px; height: 190px; right: -70px; bottom: -70px;
-                border-radius: 50%; border: 35px solid rgba(255, 255, 255, 0.12);
-                box-shadow: -65px -55px 0 -25px rgba(255, 255, 255, 0.08); pointer-events: none;
-            }
+      .slide-inner::after {
+        content: "";
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        right: -70px;
+        bottom: -70px;
+        border-radius: 50%;
+        border: 35px solid rgba(255, 255, 255, 0.12);
+        box-shadow: -65px -55px 0 -25px rgba(255, 255, 255, 0.08);
+        pointer-events: none;
+      }
 
-            .slide.is-blurred .slide-inner {
-                transform: scale(0.85);
-                filter: blur(5px);
-                opacity: 0.5;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            }
+      .slide.is-blurred .slide-inner {
+        transform: scale(0.85);
+        filter: blur(5px);
+        opacity: 0.5;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      }
 
-            .slide.is-centered .slide-inner {
-                transform: scale(1);
-                filter: blur(0);
-                opacity: 1;
-                box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
-            }
+      .slide.is-centered .slide-inner {
+        transform: scale(1);
+        filter: blur(0);
+        opacity: 1;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+      }
 
-            .slide-number { position: relative; z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: 2px; opacity: 0.8; }
-            .slide-icon { position: relative; z-index: 2; width: 48px; height: 48px; background: rgba(255, 255, 255, 0.22); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 19px; }
-            .slide h3 { position: relative; z-index: 2; font-size: 22px; font-weight: 700; line-height: 1.2; max-width: 230px; }
-            .slide p { position: relative; z-index: 2; font-size: 13px; font-weight: 400; line-height: 1.5; max-width: 230px; opacity: 0.9; }
+      .slide-number {
+        position: relative;
+        z-index: 2;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        opacity: 0.8;
+      }
+      .slide-icon {
+        position: relative;
+        z-index: 2;
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.22);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 19px;
+      }
+      .slide h3 {
+        position: relative;
+        z-index: 2;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.2;
+        max-width: 230px;
+      }
+      .slide p {
+        position: relative;
+        z-index: 2;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        max-width: 230px;
+        opacity: 0.9;
+      }
 
-            .slide-cta {
-                position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 8px; width: fit-content;
-                background: white; color: var(--ink); padding: 9px 15px; border-radius: 100px;
-                font-size: 11px; font-weight: 600; text-decoration: none;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.2s;
-            }
-            .slide.is-centered .slide-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+      .slide-cta {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        background: white;
+        color: var(--ink);
+        padding: 9px 15px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.2s;
+      }
+      .slide.is-centered .slide-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
 
-            .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: -10px; }
-            .arrow-btn { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--ink); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; transition: 0.2s; }
-            .arrow-btn:hover { background: var(--ink); color: white; }
-            .dots { display: flex; gap: 7px; }
-            .dot { width: 7px; height: 7px; border-radius: 50%; background: #ccc; cursor: pointer; transition: 0.3s; }
-            .dot.active { width: 22px; border-radius: 5px; background: var(--ink); }
+      .carousel-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        margin-top: -10px;
+      }
+      .arrow-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 2px solid var(--ink);
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 13px;
+        transition: 0.2s;
+      }
+      .arrow-btn:hover {
+        background: var(--ink);
+        color: white;
+      }
+      .dots {
+        display: flex;
+        gap: 7px;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #ccc;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .dot.active {
+        width: 22px;
+        border-radius: 5px;
+        background: var(--ink);
+      }
 
-            /* =========================================================
+      /* =========================================================
                ABOUT & FOOTER
             ========================================================= */
-            .about-airport { position: relative; background: var(--dark); color: white; padding: 40px 5% 35px; overflow: hidden; }
-            .about-inner { position: relative; z-index: 2; width: 90%; max-width: 900px; margin: auto; }
+      .about-airport {
+        position: relative;
+        background: var(--dark);
+        color: white;
+        padding: 40px 5% 35px;
+        overflow: hidden;
+      }
+      .about-inner {
+        position: relative;
+        z-index: 2;
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+      }
 
-            .about-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--orange); margin-bottom: 8px; }
-            .about-title { font-size: clamp(24px, 4vw, 32px); font-weight: 700; line-height: 1.2; letter-spacing: -1px; max-width: 650px; margin-bottom: 12px; }
-            .about-description { font-size: 13px; font-weight: 300; line-height: 1.5; opacity: 0.8; max-width: 600px; }
+      .about-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--orange);
+        margin-bottom: 8px;
+      }
+      .about-title {
+        font-size: clamp(24px, 4vw, 32px);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -1px;
+        max-width: 650px;
+        margin-bottom: 12px;
+      }
+      .about-description {
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.5;
+        opacity: 0.8;
+        max-width: 600px;
+      }
 
-            .airport-data { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; margin-top: 25px; }
-            .data-box { border-top: 1px solid rgba(255, 255, 255, 0.25); padding-top: 12px; }
-            .data-box span { display: block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; opacity: 0.6; margin-bottom: 4px; }
-            .data-box strong { font-size: 20px; font-weight: 700; line-height: 1.1; }
+      .airport-data {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 12px;
+        margin-top: 25px;
+      }
+      .data-box {
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        padding-top: 12px;
+      }
+      .data-box span {
+        display: block;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        opacity: 0.6;
+        margin-bottom: 4px;
+      }
+      .data-box strong {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.1;
+      }
 
-            .airport-bottom { position: relative; padding-top: 25px; margin-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.18); display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-            .airport-name { font-size: clamp(16px, 3vw, 20px); font-weight: 700; line-height: 1.2; }
-            .airport-name span { display: block; font-size: 10px; font-weight: 500; letter-spacing: 2px; opacity: 0.6; margin-top: 6px; }
-            .airport-code { text-align: right; font-size: 38px; font-weight: 800; line-height: 0.9; letter-spacing: 2px; }
-            .airport-code small { display: block; font-size: 9px; font-weight: 500; letter-spacing: 2px; opacity: 0.6; margin-top: 6px; }
+      .airport-bottom {
+        position: relative;
+        padding-top: 25px;
+        margin-top: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .airport-name {
+        font-size: clamp(16px, 3vw, 20px);
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .airport-name span {
+        display: block;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        opacity: 0.6;
+        margin-top: 6px;
+      }
+      .airport-code {
+        text-align: right;
+        font-size: 38px;
+        font-weight: 800;
+        line-height: 0.9;
+        letter-spacing: 2px;
+      }
+      .airport-code small {
+        display: block;
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        opacity: 0.6;
+        margin-top: 6px;
+      }
 
-            .footer { background: var(--dark2); color: white; padding: 15px 5%; font-size: 10px; font-weight: 400; letter-spacing: 0.7px; opacity: 0.95; }
-            .footer-inner { width: 90%; max-width: 900px; margin: auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
-            .footer span:last-child { opacity: 0.6; }
+      .footer {
+        background: var(--dark2);
+        color: white;
+        padding: 15px 5%;
+        font-size: 10px;
+        font-weight: 400;
+        letter-spacing: 0.7px;
+        opacity: 0.95;
+      }
+      .footer-inner {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .footer span:last-child {
+        opacity: 0.6;
+      }
 
-            /* =========================================================
+      /* =========================================================
                RESPONSIVE LANDSCAPE (duplikat sudah digabung jadi 1)
             ========================================================= */
-            @media (orientation: landscape) and (min-width: 1024px) {
-                .kiosk-wrapper { flex-direction: row; height: 100vh; overflow: hidden; }
-                .kiosk-visual { width: 42%; height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 15px 0 30px rgba(0,0,0,0.1); z-index: 50; }
-                .hero { flex: 1; height: auto; min-height: 0; }
-                .hero-content { width: 85%; padding-bottom: 80px; }
-                .kiosk-content { width: 58%; height: 100vh; overflow-y: auto; scrollbar-width: thin; }
-                .main { padding: 70px 0; }
-                .section-head { width: 85%; margin: 0 auto 40px; }
+      @media (orientation: landscape) and (min-width: 1024px) {
+        .kiosk-wrapper {
+          flex-direction: row;
+          height: 100vh;
+          overflow: hidden;
+        }
+        .kiosk-visual {
+          width: 42%;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          box-shadow: 15px 0 30px rgba(0, 0, 0, 0.1);
+          z-index: 50;
+        }
+        .hero {
+          flex: 1;
+          height: auto;
+          min-height: 0;
+        }
+        .hero-content {
+          width: 85%;
+          padding-bottom: 80px;
+        }
+        .kiosk-content {
+          width: 58%;
+          height: 100vh;
+          overflow-y: auto;
+          scrollbar-width: thin;
+        }
+        .main {
+          padding: 70px 0;
+        }
+        .section-head {
+          width: 85%;
+          margin: 0 auto 40px;
+        }
 
-                .carousel-track { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 0 7.5%; overflow: visible; }
-                .slide { flex: none; width: 100%; height: auto; padding: 0; }
+        .carousel-track {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+          padding: 0 7.5%;
+          overflow: visible;
+        }
+        .slide {
+          flex: none;
+          width: 100%;
+          height: auto;
+          padding: 0;
+        }
 
-                .slide.is-blurred .slide-inner { transform: scale(1); filter: blur(0); opacity: 1; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08); }
-                .slide.is-centered .slide-inner { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08); }
+        .slide.is-blurred .slide-inner {
+          transform: scale(1);
+          filter: blur(0);
+          opacity: 1;
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+        }
+        .slide.is-centered .slide-inner {
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+        }
 
-                .carousel-controls { display: none; }
+        .carousel-controls {
+          display: none;
+        }
 
-                .about-airport { padding: 80px 7.5% 60px; }
-                .about-inner { width: 100%; }
-                .airport-bottom { flex-direction: row; align-items: flex-end; }
-                .airport-code { text-align: right; }
-            }
+        .about-airport {
+          padding: 80px 7.5% 60px;
+        }
+        .about-inner {
+          width: 100%;
+        }
+        .airport-bottom {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+        .airport-code {
+          text-align: right;
+        }
+      }
     </style>
   </head>
 
@@ -351,7 +753,12 @@
                     <p style="margin-top: 12px">
                       Informasi keberangkatan, kedatangan dan perjalanan Anda.
                     </p>
-                    <a href="#" class="slide-cta" style="margin-top: 18px">Lihat Detail<i class="fa-solid fa-arrow-right"></i></a>
+                    <a
+                      href="../wayfinding/Lantai1.php"
+                      class="slide-cta"
+                      style="margin-top: 18px"
+                      >Lihat Detail<i class="fa-solid fa-arrow-right"></i
+                    ></a>
                   </div>
                 </div>
               </article>
@@ -391,7 +798,10 @@
                     <p style="margin-top: 12px">
                       Petunjuk arah dan lokasi fasilitas di dalam bandara.
                     </p>
-                    <a href="#" class="slide-cta" style="margin-top: 18px"
+                    <a
+                      href="../wayfinding/Lantai1.php"
+                      class="slide-cta"
+                      style="margin-top: 18px"
                       >Buka peta <i class="fa-solid fa-arrow-right"></i
                     ></a>
                   </div>
@@ -434,7 +844,7 @@
 
         <section class="about-airport">
           <div class="pattern-corner top-left"></div>
-<div class="pattern-corner bottom-right"></div>
+          <div class="pattern-corner bottom-right"></div>
           <div class="about-inner">
             <div class="about-label">ABOUT THE AIRPORT</div>
             <h2 class="about-title">
