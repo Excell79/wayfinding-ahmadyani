@@ -1,8 +1,13 @@
 <?php
 require 'koneksi.php';
 
-// Tentukan alamat gudang video
-$target_dir = "../wayfinding/videos/";
+// Tentukan alamat mutlak gudang video (biar server ga nyasar)
+$target_dir = __DIR__ . "/../wayfinding/videos/";
+
+// Paksa bikin foldernya otomatis kalau ternyata belum ada
+if (!file_exists($target_dir)) {
+    mkdir($target_dir, 0777, true);
+}
 
 // Logika Algojo: Kalau tombol Hapus ditekan
 if (isset($_GET['hapus'])) {

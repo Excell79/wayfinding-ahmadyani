@@ -81,7 +81,7 @@ if (isset($_GET['play'])) {
 
       <?php if ($is_playing): ?>
         <video autoplay loop muted playsinline style="width: 100%; margin-top: -110px; display: block;">
-          <source src="../../wayfinding/<?= htmlspecialchars($video_aktif) ?>" type="video/mp4" />
+          <source src="<?= htmlspecialchars($video_aktif) ?>" type="video/mp4" />
         </video>
       <?php else: ?>
         <img 
@@ -372,7 +372,7 @@ if (isset($_GET['play'])) {
                           <a href="${linkHref}" class="ahref">
                             <div class="tenant">
                               ${t.nomor_jalur}.
-                              ${logoPath ? `<img src="../../wayfinding/${logoPath}" alt="${t.nama_jalur}" />` : `<span style="margin-left: 10px; font-size: 14px;">${t.nama_jalur}</span>`}
+                              ${logoPath ? `<img src="${logoPath}" alt="${t.nama_jalur}" />` : `<span style="margin-left: 10px; font-size: 14px;">${t.nama_jalur}</span>`}
                             </div>
                           </a>`;
                     }
@@ -427,7 +427,7 @@ if (isset($_GET['play'])) {
                           </a>`;
                     } else {
                         let logoPath = resolvePath(p.logo_jalur);
-                        let imgTag = logoPath ? `<img src="../../wayfinding/${logoPath}" ${customImgStyle ? `style="${customImgStyle}"` : ''} />` : `<span style="margin-left: 10px; font-size: 14px;">${p.nama_jalur}</span>`;
+                        let imgTag = logoPath ? `<img src="${logoPath}" ${customImgStyle ? `style="${customImgStyle}"` : ''} />` : `<span style="margin-left: 10px; font-size: 14px;">${p.nama_jalur}</span>`;
                         
                         pickupHTML += `
                           <a href="${linkHref}" class="ahref">
@@ -491,7 +491,7 @@ if (isset($_GET['play'])) {
                         ${btnMarginStyle}
                       "
                     >
-                      ${logoPath ? `<img src="../../wayfinding/${logoPath}" style="width: ${imgWidth}; margin-left: 10px" />` : `<span style="margin-left: 10px; font-size:25px;">📌</span>`}
+                      ${logoPath ? `<img src="${logoPath}" style="width: ${imgWidth}; margin-left: 10px" />` : `<span style="margin-left: 10px; font-size:25px;">📌</span>`}
                       <p style="margin: 0;">${f.nama_jalur}</p>
                     </button>
                   </a>`;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jenderal Ahmad Yani Airport — Colorful Blur Stack</title>
+    <title>Jenderal Ahmad Yani Airport — Kiosk Menu</title>
 
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,7 +22,7 @@
     <style>
       /* =========================================================
                RESET & VARIABLES
-            ========================================================= */
+      ========================================================= */
       * {
         margin: 0;
         padding: 0;
@@ -62,7 +62,7 @@
 
       /* =========================================================
                LAYOUT ARCHITECTURE
-            ========================================================= */
+      ========================================================= */
       .kiosk-wrapper {
         display: flex;
         flex-direction: column;
@@ -85,8 +85,8 @@
       }
 
       /* =========================================================
-               NUSANTARA PATTERN (FIXED: full-cover, gak ngotak lagi)
-            ========================================================= */
+               NUSANTARA PATTERN
+      ========================================================= */
       .pattern-corner {
         position: absolute;
         pointer-events: none;
@@ -97,13 +97,11 @@
         background-size: contain;
         opacity: 0.5;
       }
-
       .pattern-corner.top-left {
         top: -60px;
         left: -60px;
         background-image: url("gambar/Home/patern.png");
       }
-
       .pattern-corner.bottom-right {
         bottom: -60px;
         right: -60px;
@@ -113,10 +111,10 @@
 
       /* =========================================================
                TOP BAR
-            ========================================================= */
+      ========================================================= */
       .topbar {
         min-height: 64px;
-        background: var(--lime);
+        background: var(--dark2);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -152,7 +150,7 @@
 
       /* =========================================================
                HERO & WAVE
-            ========================================================= */
+      ========================================================= */
       .hero {
         position: relative;
         height: 35vh;
@@ -188,7 +186,6 @@
           rgba(7, 91, 97, 0.92) 100%
         );
       }
-
       .hero-content {
         position: relative;
         z-index: 3;
@@ -222,7 +219,6 @@
         font-weight: 500;
         opacity: 0.85;
       }
-
       .hero-wave {
         position: absolute;
         bottom: -2px;
@@ -238,7 +234,7 @@
 
       /* =========================================================
                MAIN MENU
-            ========================================================= */
+      ========================================================= */
       .main {
         position: relative;
         padding: 20px 0 80px;
@@ -269,14 +265,13 @@
 
       /* =========================================================
                CAROUSEL / BLUR STACK UI
-            ========================================================= */
+      ========================================================= */
       .carousel-wrap {
         position: relative;
         z-index: 3;
         width: 100%;
         overflow: hidden;
       }
-
       .carousel-track {
         display: flex;
         gap: 0px;
@@ -295,7 +290,6 @@
         scroll-snap-align: center;
         padding: 0 10px;
       }
-
       .slide-inner {
         height: 350px;
         border-radius: 28px;
@@ -306,6 +300,7 @@
         color: white;
         position: relative;
         overflow: hidden;
+        will-change: transform, filter, opacity;
         transition:
           transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
           filter 0.4s ease,
@@ -340,13 +335,12 @@
         pointer-events: none;
       }
 
+      /* Efek Stack Blur */
       .slide.is-blurred .slide-inner {
         transform: scale(0.85);
-        filter: blur(5px);
-        opacity: 0.5;
+        opacity: 0.35;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
       }
-
       .slide.is-centered .slide-inner {
         transform: scale(1);
         filter: blur(0);
@@ -391,7 +385,6 @@
         max-width: 230px;
         opacity: 0.9;
       }
-
       .slide-cta {
         position: relative;
         z-index: 2;
@@ -458,7 +451,7 @@
 
       /* =========================================================
                ABOUT & FOOTER
-            ========================================================= */
+      ========================================================= */
       .about-airport {
         position: relative;
         background: var(--dark);
@@ -473,7 +466,6 @@
         max-width: 900px;
         margin: auto;
       }
-
       .about-label {
         font-size: 11px;
         font-weight: 700;
@@ -496,7 +488,6 @@
         opacity: 0.8;
         max-width: 600px;
       }
-
       .airport-data {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -584,8 +575,8 @@
       }
 
       /* =========================================================
-               RESPONSIVE LANDSCAPE (duplikat sudah digabung jadi 1)
-            ========================================================= */
+               RESPONSIVE LANDSCAPE (Fix: Carousel dipertahankan)
+      ========================================================= */
       @media (orientation: landscape) and (min-width: 1024px) {
         .kiosk-wrapper {
           flex-direction: row;
@@ -623,35 +614,6 @@
           width: 85%;
           margin: 0 auto 40px;
         }
-
-        .carousel-track {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-          padding: 0 7.5%;
-          overflow: visible;
-        }
-        .slide {
-          flex: none;
-          width: 100%;
-          height: auto;
-          padding: 0;
-        }
-
-        .slide.is-blurred .slide-inner {
-          transform: scale(1);
-          filter: blur(0);
-          opacity: 1;
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-        }
-        .slide.is-centered .slide-inner {
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .carousel-controls {
-          display: none;
-        }
-
         .about-airport {
           padding: 80px 7.5% 60px;
         }
@@ -670,6 +632,30 @@
   </head>
 
   <body>
+    <!-- KAIN PROYEKTOR SCREENSAVER (Fade IN/OUT Smooth) -->
+    <div
+      id="screensaver-overlay"
+      style="
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: #000;
+      "
+    >
+      <video
+        id="ss-video"
+        style="width: 100%; height: 100%; object-fit: cover"
+        muted
+        playsinline
+      ></video>
+    </div>
+
     <div class="kiosk-wrapper">
       <!-- PANEL KIRI / ATAS -->
       <div class="kiosk-visual">
@@ -753,10 +739,7 @@
                     <p style="margin-top: 12px">
                       Informasi keberangkatan, kedatangan dan perjalanan Anda.
                     </p>
-                    <a
-                      href="../wayfinding/Lantai1.php"
-                      class="slide-cta"
-                      style="margin-top: 18px"
+                    <a href="#" class="slide-cta" style="margin-top: 18px"
                       >Lihat Detail<i class="fa-solid fa-arrow-right"></i
                     ></a>
                   </div>
@@ -777,7 +760,10 @@
                     <p style="margin-top: 12px">
                       Temukan destinasi menarik di Semarang dan Jawa Tengah.
                     </p>
-                    <a href="#" class="slide-cta" style="margin-top: 18px"
+                    <a
+                      href="Lantai1.php"
+                      class="slide-cta"
+                      style="margin-top: 18px"
                       >Jelajahi <i class="fa-solid fa-arrow-right"></i
                     ></a>
                   </div>
@@ -798,10 +784,7 @@
                     <p style="margin-top: 12px">
                       Petunjuk arah dan lokasi fasilitas di dalam bandara.
                     </p>
-                    <a
-                      href="../wayfinding/Lantai1.php"
-                      class="slide-cta"
-                      style="margin-top: 18px"
+                    <a href="#" class="slide-cta" style="margin-top: 18px"
                       >Buka peta <i class="fa-solid fa-arrow-right"></i
                     ></a>
                   </div>
@@ -822,7 +805,10 @@
                     <p style="margin-top: 12px">
                       Sampaikan penilaian, masukan dan pengalaman Anda.
                     </p>
-                    <a href="../feedback/index.php" class="slide-cta" style="margin-top: 18px"
+                    <a
+                      href="../feedback/index.php"
+                      class="slide-cta"
+                      style="margin-top: 18px"
                       >Berikan feedback <i class="fa-solid fa-arrow-right"></i
                     ></a>
                   </div>
@@ -886,7 +872,7 @@
       </div>
     </div>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT CAROUSEL KIOSK -->
     <script>
       const track = document.getElementById("carouselTrack");
       const slides = document.querySelectorAll(".slide");
@@ -918,13 +904,6 @@
       }
 
       function updateFocus() {
-        if (window.innerWidth >= 1024) {
-          slides.forEach((s) =>
-            s.classList.remove("is-centered", "is-blurred"),
-          );
-          return;
-        }
-
         const trackCenter =
           track.getBoundingClientRect().left +
           track.getBoundingClientRect().width / 2;
@@ -937,7 +916,6 @@
             slide.getBoundingClientRect().left +
             slide.getBoundingClientRect().width / 2;
           const distance = Math.abs(trackCenter - slideCenter);
-
           if (distance < minDistance) {
             minDistance = distance;
             closestSlide = slide;
@@ -967,7 +945,6 @@
         isScrolling = window.requestAnimationFrame(updateFocus);
       });
       window.addEventListener("resize", updateFocus);
-
       updateFocus();
 
       nextBtn.addEventListener("click", () => {
@@ -986,6 +963,101 @@
         heroCurrent = (heroCurrent + 1) % heroSlides.length;
         heroSlides[heroCurrent].classList.add("active");
       }, 5000);
+    </script>
+
+    <!-- JAVASCRIPT SCREENSAVER SENSOR & LAZY LOAD DATA -->
+    <script>
+      console.log("1. MENGHIDUPKAN SENSOR SCREENSAVER...");
+      const ssOverlay = document.getElementById("screensaver-overlay");
+      const ssVideo = document.getElementById("ss-video");
+      let idleTimer;
+      let playlist = [];
+      let currentVideoIndex = 0;
+      const IDLE_TIMEOUT = 10000; // Testing 10 detik
+
+      // Tarik list dari database detik ini juga biar up to date
+      async function fetchPlaylist() {
+        console.log("2. MENGHUBUNGI GUDANG DATABASE API...");
+        try {
+          const noCache = new Date().getTime();
+          const res = await fetch(`get_screensaver.php?t=${noCache}`);
+          if (!res.ok) return;
+          playlist = await res.json();
+          console.log("🔄 PLAYLIST TER-UPDATE: ", playlist);
+        } catch (e) {
+          console.error("❌ ERROR BACA DATA", e);
+        }
+      }
+
+      async function playScreensaver() {
+        console.log(
+          "⏳ TIMER NGANGGUR HABIS! CEK GUDANG DULU SEBELUM TAYANG...",
+        );
+        await fetchPlaylist(); // Lazy Load Data
+
+        if (playlist.length === 0) {
+          console.log("❌ BATAL MUTAR: Playlist kosong.");
+          return;
+        }
+
+        ssOverlay.style.opacity = "1";
+        ssOverlay.style.pointerEvents = "auto";
+
+        if (currentVideoIndex >= playlist.length) currentVideoIndex = 0;
+
+        // Anti-Cache: Biar Chrome ga muter file mp4 yang nyangkut di memori
+        const antiCache = new Date().getTime();
+        let targetVideo =
+          "videos/" + playlist[currentVideoIndex] + "?v=" + antiCache;
+
+        console.log("▶️ MEMUTAR VIDEO: " + targetVideo);
+        ssVideo.src = targetVideo;
+
+        ssVideo.play().catch((err) => {
+          console.error("❌ ERROR PEMUTARAN:", err);
+        });
+      }
+
+      ssVideo.addEventListener("ended", async () => {
+        console.log("🔄 VIDEO SELESAI, TARIK DATA TERBARU LALU LANJUT...");
+        
+        // Panggil kurir lagi buat mastiin ga ada video yang dihapus/ditambah Humas barusan
+        await fetchPlaylist(); 
+        
+        currentVideoIndex++;
+        if (currentVideoIndex >= playlist.length) currentVideoIndex = 0;
+        
+        // Anti-Cache juga di sini
+        const antiCache = new Date().getTime();
+        ssVideo.src = "videos/" + playlist[currentVideoIndex] + "?v=" + antiCache;
+        ssVideo.play();
+      });
+
+      function resetTimer() {
+        if (ssOverlay.style.opacity === "1") {
+          console.log("✋ LAYAR DISENTUH! MATIKAN VIDEO KEMBALI KE MENU.");
+        }
+
+        // Tutup layarnya pakai transisi smooth
+        ssOverlay.style.opacity = "0";
+        ssOverlay.style.pointerEvents = "none";
+
+        // Jeda bentar nunggu layarnya beneran ilang sebelum nge-pause video
+        setTimeout(() => {
+          ssVideo.pause();
+        }, 600);
+
+        // Ulang hitungan dari 0
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(playScreensaver, IDLE_TIMEOUT);
+      }
+
+      ["touchstart", "click", "mousemove", "scroll", "keypress"].forEach(
+        (evt) => document.addEventListener(evt, resetTimer),
+      );
+
+      // Jalankan timer pertama kali
+      resetTimer();
     </script>
   </body>
 </html>
