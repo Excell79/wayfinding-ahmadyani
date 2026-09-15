@@ -36,62 +36,11 @@ if ($nama !== '') {
     $where .= " AND nama_jalur LIKE '%$nama%'";
 }
 
-// ============================================================
-// Cari file logo yang BENERAN ada, berdasarkan nama_jalur
-// (gak percaya kolom logo_jalur di database yang sering basi/typo)
-// ============================================================
-function findLogoFile($lantai, $nama, $baseDir) {
-    $searchDirs = [
-    "$baseDir/gambar/Lantai$lantai/logotenant",
-    "$baseDir/gambar/Lantai$lantai/logoicon",
-    "$baseDir/gambar/tenant internasional",
-];
-
-    $target = strtolower(preg_replace('/[^a-z0-9]/i', '', $nama));
-    $candidates = [];
-
-    foreach ($searchDirs as $dir) {
-        if (!is_dir($dir)) continue;
-        foreach (scandir($dir) as $file) {
-            if ($file === '.' || $file === '..') continue;
-            $nameNoExt = pathinfo($file, PATHINFO_FILENAME);
-            $normalized = strtolower(preg_replace('/[^a-z0-9]/i', '', $nameNoExt));
-
-            if ($normalized === $target) {
-                return str_replace($baseDir . '/', '', "$dir/$file");
-            }
-            $candidates[$normalized] = "$dir/$file";
-        }
-    }
-
-    // fallback: toleransi typo kecil (misal "Rotio" vs "otio")
-    $best = null;
-    $bestScore = 0;
-    foreach ($candidates as $norm => $path) {
-        similar_text($target, $norm, $percent);
-        if ($percent > $bestScore && $percent > 70) {
-            $bestScore = $percent;
-            $best = $path;
-        }
-    }
-
-    return $best ? str_replace($baseDir . '/', '', $best) : null;
-}
-
 $query  = "SELECT * FROM tabel_jalur WHERE $where ORDER BY nomor_jalur ASC";
 $result = mysqli_query($conn, $query);
 
-$baseDir = realpath(__DIR__ . '/..'); // folder wayfinding
-
 $data = [];
 while ($row = mysqli_fetch_assoc($result)) {
-    $namaLower = strtolower(trim($row['nama_jalur']));
-    if ($namaLower !== 'idle' && $namaLower !== '') {
-        $found = findLogoFile($row['lantai_jalur'], $row['nama_jalur'], $baseDir);
-        if ($found) {
-            $row['logo_jalur'] = $found; // override data basi dari database
-        }
-    }
     $data[] = $row;
 }
 
