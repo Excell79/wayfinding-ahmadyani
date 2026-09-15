@@ -42,9 +42,10 @@ if ($nama !== '') {
 // ============================================================
 function findLogoFile($lantai, $nama, $baseDir) {
     $searchDirs = [
-        "$baseDir/gambar/Lantai$lantai/logotenant",
-        "$baseDir/gambar/Lantai$lantai/logoicon",
-    ];
+    "$baseDir/gambar/Lantai$lantai/logotenant",
+    "$baseDir/gambar/Lantai$lantai/logoicon",
+    "$baseDir/gambar/tenant internasional",
+];
 
     $target = strtolower(preg_replace('/[^a-z0-9]/i', '', $nama));
     $candidates = [];

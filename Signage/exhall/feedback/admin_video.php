@@ -78,7 +78,7 @@ $videos = $pdo->query("SELECT * FROM screensavers ORDER BY id DESC")->fetchAll()
         .btn-hapus { background: #e63946; color: white; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; }
         .btn-hapus:hover { background: #d62828; }
     </style>
-</head>
+<style>::-webkit-scrollbar{display:none !important;} *{scrollbar-width:none !important;}</style><style>body{touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;}</style></head>
 <body>
 
 <div class="container">
@@ -113,5 +113,5 @@ $videos = $pdo->query("SELECT * FROM screensavers ORDER BY id DESC")->fetchAll()
     </table>
 </div>
 
-</body>
+<script>document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false}); let lastTouchEnd=0; document.addEventListener('touchend',function(e){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},false);</script></body>
 </html>

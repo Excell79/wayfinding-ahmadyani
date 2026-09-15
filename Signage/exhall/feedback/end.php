@@ -108,7 +108,7 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 		$Name=$_GET['nama'];
 		?>
 <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
-</head>
+<style>::-webkit-scrollbar{display:none !important;} *{scrollbar-width:none !important;}</style><style>body{touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;}</style></head>
 
 
 <body oncontextmenu='return false;' onkeydown='return false;' onmousedown='return false;'>
@@ -180,5 +180,5 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 var button = new Audio();
 button.src = 'vote/button.mp3';
 </script>
-</body>
+<script>document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false}); let lastTouchEnd=0; document.addEventListener('touchend',function(e){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},false);</script></body>
 </html>

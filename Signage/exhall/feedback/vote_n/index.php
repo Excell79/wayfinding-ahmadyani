@@ -126,7 +126,7 @@ buruk.src = '1.mp3';
 		$sec = "180";
 		?>
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
-</head>
+<style>::-webkit-scrollbar{display:none !important;} *{scrollbar-width:none !important;}</style><style>body{touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;}</style></head>
 <body onLoad="buttonxx.play()" oncontextmenu='return false;' onkeydown='return false;' onmousedown='return false;'>
   <div class="header">
     <a href="../../feedback">
@@ -790,5 +790,5 @@ $cookie = $randomString;
   </script>
 
   <script src="js/boostrap.js"></script>
-  </body>
+  <script>document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false}); let lastTouchEnd=0; document.addEventListener('touchend',function(e){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},false);</script></body>
 </html>

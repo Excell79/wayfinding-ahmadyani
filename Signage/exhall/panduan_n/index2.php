@@ -443,7 +443,7 @@ foreach ($post_ids as $pid) {
             .footer-inner { gap: 24px; }
         }
     </style>
-</head>
+<style>::-webkit-scrollbar{display:none !important;} *{scrollbar-width:none !important;}</style><style>body{touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;}</style></head>
 <body>
 
 <!-- NAVBAR -->
@@ -677,5 +677,5 @@ function toggleAcc(btn) {
 }
 </style>
 
-</body>
+<script>document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false}); let lastTouchEnd=0; document.addEventListener('touchend',function(e){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},false);</script></body>
 </html>

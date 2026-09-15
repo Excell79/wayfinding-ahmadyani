@@ -306,7 +306,7 @@ footer span{color:var(--gold);font-weight:600}
 ::-webkit-scrollbar-thumb{background:var(--stone);border-radius:6px}
 ::-webkit-scrollbar-thumb:hover{background:var(--gold)}
 </style>
-</head>
+<style>::-webkit-scrollbar{display:none !important;} *{scrollbar-width:none !important;}</style><style>body{touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;}</style></head>
 <body>
 
 <header class="hdr" id="hdr">
@@ -640,5 +640,5 @@ window.addEventListener('scroll', () => {
 }
 </style>
 
-</body>
+<script>document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false}); let lastTouchEnd=0; document.addEventListener('touchend',function(e){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},false);</script></body>
 </html>

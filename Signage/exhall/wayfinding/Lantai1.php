@@ -29,7 +29,7 @@ if (isset($_GET['play'])) {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>LANTAI 1</title>
     <style>
       .grid {
@@ -57,7 +57,7 @@ if (isset($_GET['play'])) {
         margin-left: 10px;
       }
     </style>
-  </head>
+  <style>::-webkit-scrollbar{display:none !important;} *{scrollbar-width:none !important;}</style><style>body{touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;}</style></head>
   <body>
     <div
       style="
@@ -508,5 +508,5 @@ if (isset($_GET['play'])) {
       }
       document.addEventListener('DOMContentLoaded', loadDataJalur);
     </script>
-  </body>
+  <script>document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false}); let lastTouchEnd=0; document.addEventListener('touchend',function(e){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},false);</script></body>
 </html>
