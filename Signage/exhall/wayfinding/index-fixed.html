@@ -646,6 +646,75 @@
         user-select: none;
         -webkit-user-select: none;
       }
+
+      /* =========================================================
+               WIDGET CS ONLINE (FLOATING)
+      ========================================================= */
+      .cs-widget {
+        position: fixed;
+        bottom: 995px;
+        right: 35px;
+        background: var(--white);
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        padding: 8px 24px 8px 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        text-decoration: none;
+        z-index: 900; /* Biar selalu di atas layar, tapi di bawah screensaver */
+        border: 2px solid var(--teal);
+        transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        /* Efek denyut biar kelihatan "Live" */
+        animation: pulseCS 2s infinite;
+      }
+      
+      .cs-widget:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        animation: none; /* Matiin denyut kalau disentuh */
+      }
+
+      .cs-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--cream);
+        overflow: hidden;
+        margin-right: 14px;
+        border: 2px solid var(--orange);
+      }
+
+      .cs-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .cs-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cs-text span {
+        font-size: 11px;
+        font-weight: 700;
+        color: gray;
+        letter-spacing: 0.5px;
+      }
+
+      .cs-text strong {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--teal);
+        line-height: 1.1;
+      }
+
+      @keyframes pulseCS {
+        0% { box-shadow: 0 0 0 0 rgba(35, 153, 163, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(35, 153, 163, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(35, 153, 163, 0); }
+      }
+
     </style>
   </head>
 
@@ -1075,8 +1144,21 @@
         (evt) => document.addEventListener(evt, resetTimer),
       );
 
-      // Jalankan timer pertama kali
-      resetTimer();
+      // ======================================================
+      // LOGIKA CEK SURAT TITIPAN DARI HALAMAN ANAK
+      // ======================================================
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('ss') === '1') {
+        console.log("🚀 Mode Jalur Cepat: Langsung putar Screensaver!");
+        playScreensaver(); // Langsung tayang tanpa nunggu!
+        
+        // Bersihin URL dari '?ss=1' biar kalau Kiosk nge-refresh, videonya gak muter sendiri
+        window.history.replaceState(null, null, window.location.pathname);
+      } else {
+        console.log("🚶 Mode Normal: Hitung mundur 30 detik...");
+        resetTimer(); // Jalankan timer normal
+      }
+    </script>
     </script>
     <script>
       document.addEventListener(
@@ -1097,5 +1179,17 @@
         false,
       );
     </script>
+    <!-- WIDGET CS ONLINE -->
+    <!-- Ganti href dengan link halaman bikinan si bocah magang -->
+    <a href="../cs_online/index.php" class="cs-widget">
+      <div class="cs-avatar">
+        <!-- Siapin foto petugas salam di folder gambar lu -->
+        <img src="gambar/Membuat_background_gradasi_gambar_2K_20260916105623.jpeg" alt="CS Online" />
+      </div>
+      <div class="cs-text">
+        <span>Butuh Bantuan?</span>
+        <strong>CS ONLINE</strong>
+      </div>
+    </a>
   </body>
 </html>

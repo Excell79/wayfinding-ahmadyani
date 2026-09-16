@@ -508,5 +508,5 @@ if (isset($_GET['play'])) {
       }
       document.addEventListener('DOMContentLoaded', loadDataJalur);
     </script>
-  </body>
+  <script>const IDLE_LIMIT=30000;let kioskIdleTimer;function resetIdleTimer(){clearTimeout(kioskIdleTimer);kioskIdleTimer=setTimeout(function(){window.location.href="index-fixed.html?ss=1";},IDLE_LIMIT);}['touchstart','click','mousemove','scroll','keypress'].forEach(evt=>document.addEventListener(evt,resetIdleTimer,{passive:true}));resetIdleTimer();</script></body>
 </html>
