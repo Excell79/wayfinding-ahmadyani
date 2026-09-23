@@ -1,794 +1,537 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="id">
+<head>
     <meta charset="utf-8">
-    <title>FEEDBACK</title>
+    <title>Feedback Bandara Ahmad Yani — Interactive Kiosk</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/fids.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<script src="js/modernizr.custom.js"></script>
-    <style>
-    .body{
-      background-image: url(../img/bg.png);
-    }
-    .header {
-    	position: fixed;
-    	font-size: 14px;
-    	top: 0;
-    	left: 0;
-    	width: 100%;
-    	height: 50px;
-    	z-index: 10;
-    	background: linear-gradient(135deg,#6394ff 0%,#0a193b 100%);
-    		color: white;
-    	-webkit-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
-    	-moz-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
-    	box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
-    }
-    .footer {
-    		font-size:14px;
-    	position: fixed;
-    	bottom: 0;
-    	left: 0;
-    	width: 100%;
-    	height: 25px;
-    	z-index: 10;
-    	background: linear-gradient(135deg,#6394ff 0%,#0a193b 100%);
-    		color: white;
-    	-webkit-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
-    	-moz-box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
-    	box-shadow: 0 7px 8px rgba(0, 0, 0, 0.12);
-    }
-    .buttonBg {
-    	background-color: #333;
-    	/* Green */
-    	border: none;
-    	color: white;
-    	padding: 15px 32px;
-    	text-align: center;
-    	text-decoration: none;
-    	display: inline-block;
-    	font-size: 16px;
-    	cursor: pointer;
-    }
-    </style>
-	<script src="js/js.js"></script>
-    <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-    <![endif]-->
-	<script type="text/javascript">
-<!--
-function MM_preloadImages() { //v3.0
-  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
-    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
-    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
-}
-//-->
-</script>
-<head><title>Feedback Bandara Ahmad Yani</title>
-<!--  <link href="assets/img/Ap.png" rel="Shortcut Icon" />
-<link rel="stylesheet" type="text/css" href="assets/css/cagfeedback.css" /> -->
-<script src="js/jquery-1.4.3.min.js" type="text/javascript"></script>
-<script src="js/jquery.ezmark.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(document).ready(function () {
-	var arr = new Array(
-		"#rblDeparture_Facilities",
-		"#rblArrival_Facilities",
-		"#rblAirport_Cleanliness",
-		"#rblFriendliness_Of_Staff",
-		"#rblShopping_Facilities",
-		"#rblFood_Beverages",
-		"#rblOther_Facilities"
-	);
-	for(var i in arr) {
-		var value = arr[i];
-      $(value + " td:eq(0)").addClass("excellent");
-			$(value + " td:eq(1)").addClass("excellent");
-			$(value + " td:eq(2)").addClass("good");
-			$(value + " td:eq(3)").addClass("average");
-			$(value + " td:eq(4)").addClass("poor");
-	}
+    <meta name="description" content="Kiosk Feedback System">
+    
+    <!-- Modern Pure Vanilla CSS -->
+    <link rel="stylesheet" href="css/feedback_modern.css">
+    
+    <!-- Audio Triggers -->
+    <script>
+        var buttonAudio = new Audio('button.mp3');
+        var audio1 = new Audio('1.mp3');
+        var audio2 = new Audio('2.mp3');
+        var audio3 = new Audio('3.mp3');
+        var audio4 = new Audio('4.mp3');
+        var audio5 = new Audio('5.mp3')
 
-	$('.page1 tbody table td input').ezMark();
-});
-</script>
-<script>
-var button = new Audio();
-button.src = 'button.mp3';
-</script>
-<script>
-var sempurna = new Audio();
-sempurna.src = '5.mp3';
-</script>
-<script>
-var istimewa = new Audio();
-istimewa.src = '4.mp3';
-</script>
-<script>
-var baik = new Audio();
-baik.src = '3.mp3';
-</script>
-<script>
-var cukup = new Audio();
-cukup.src = '2.mp3';
-</script>
-<script>
-var buruk = new Audio();
-buruk.src = '1.mp3';
-</script>
-	<link rel="shortcut icon" href="#">
-		<?php
-		$page = "../index.html";
-		$sec = "180";
-		?>
-    <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
-<style>::-webkit-scrollbar{display:none !important;} *{scrollbar-width:none !important;}</style><style>body{touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;}</style></head>
-<body onLoad="buttonxx.play()" oncontextmenu='return false;' onkeydown='return false;' onmousedown='return false;'>
-  <div class="header">
-    <a href="../../feedback">
-<button onClick="document.location.href='../../feedback'" class="buttonBg">Go Back</button></a> <b>Feedback</b> System
+        function playSound(val) {
+            try {
+                if (val === 1) audio1.play();
+                else if (val === 2) audio2.play();
+                else if (val === 3) audio3.play();
+                else if (val === 4) audio4.play();
+                else if (val === 5) audio5.play();
+            } catch(e) {}
+        }
+    </script>
 
-  </div>
-  <br>
-  <br>
-<form method="post" action="proses.php">
-<?php
-$length = 10;
-$randomString = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-$cookie = $randomString;
-?>
-<input name="cookies" type="hidden" value="<?php echo $cookie ;?>">
-<table width=100%>
-<tr>
-<td width=100%>
-<table >
-			  <thead>
-			<tr class="home" align="center">
-			<th width="3%"></th>
-				<th width="40%"></th>
-				<th >SEMPURNA</th>
-				<th >SANGAT BAIK</th>
-				<th >BAIK</th>
-				<th >LUMAYAN</th>
-        <th >BURUK</th>
-			</tr>
-		  </thead>
-		  <tbody>
-	   <tr>
-	   <td><img src="img/Feedback Icons/taxi.png" alt="ap1"></td>
-	   			<td><font size="5px"> TRANSPORTASI DARAT DARI & KE BANDARA</font><input name="Airport_Transport_1" type="hidden" value="1"> </td>
-          <td>
-          <div class="cc-selector" onMouseDown="sempurna.play()">
-          <input id="sempurna" type="radio" name="Airport_Transport" value="5"/>
-          <label class="drinkcard-cc istimewa" for="sempurna"></label>
-          </div>
-        </td>
-        <td>
-			  <div class="cc-selector" onMouseDown="istimewa.play()">
-        <input id="sangatbaik" type="radio" name="Airport_Transport" value="4"/>
-        <label class="drinkcard-cc istimewa" for="sangatbaik"></label>
-    		</div>
-			</td>
-        <td>
-			  <div class="cc-selector" onMouseDown="baik.play()">
-        <input id="baik" type="radio" name="Airport_Transport" value="3"/>
-        <label class="drinkcard-cc baik" for="baik"></label>
-    		</div>
-			</td>
-			  <td>
-			  <div class="cc-selector" onMouseDown="cukup.play()">
-        <input id="lumayan" type="radio" name="Airport_Transport" value="2"/>
-        <label class="drinkcard-cc cukup" for="lumayan"></label>
-    		</div>
-			</td>
-        <td>
-        <div class="cc-selector" onMouseDown="buruk.play()">
-        <input id="buruk" type="radio" name="Airport_Transport" value="1"/>
-        <label class="drinkcard-cc buruk" for="buruk"></label>
-    		</div>
-      </td>
-		</tr>
-		<tr>
-		<td><img src="img/Feedback Icons/parking.png" alt="ap1"></td>
-	   			<td><font size="5px"> FASILITAS PARKIR</font><input name="Parking_Facility_2" type="hidden" value="2"> </td>
-              <td>
-        <div class="cc-selector" onMouseDown="sempurna.play()">
-         <input id="sempurna2" type="radio" name="Parking_Facility" value="5"/>
-         <label class="drinkcard-cc istimewa2" for="sempurna2"></label>
-     		</div>
- 			</td>
-        <td>
- 			  <div class="cc-selector" onMouseDown="istimewa.play()">
-         <input id="sangatbaik2" type="radio" name="Parking_Facility" value="4"/>
-         <label class="drinkcard-cc istimewa2" for="sangatbaik2"></label>
-     		</div>
- 			</td>
-        <td>
- 			  <div class="cc-selector" onMouseDown="baik.play()">
-         <input id="baik2" type="radio" name="Parking_Facility" value="3"/>
-         <label class="drinkcard-cc baik2" for="baik2"></label>
-     		</div>
- 			</td>
- 			  <td>
- 			  <div class="cc-selector" onMouseDown="cukup.play()">
-         <input id="lumayan2" type="radio" name="Parking_Facility" value="2"/>
-         <label class="drinkcard-cc cukup2" for="lumayan2"></label>
-     		</div>
- 			</td>
-         <td>
-         <div class="cc-selector" onMouseDown="buruk.play()">
-         <input id="buruk2" type="radio" name="Parking_Facility" value="1"/>
-         <label class="drinkcard-cc buruk2" for="buruk2"></label>
-     		</div>
-			</td>
-		</tr>
-		<tr>
-		<td><img src="img/Feedback Icons/money.png" alt="ap1"></td>
-	   			<td><font size="5px"> HARGA FASILITAS PARKIR</font><input name="Parking_Price_3" type="hidden" value="3"> </td>
-              <td>
-      <div class="cc-selector" onMouseDown="sempurna.play()">
-       <input id="sempurna3" type="radio" name="Parking_Price" value="5"/>
-       <label class="drinkcard-cc istimewa3" for="sempurna3"></label>
-   		</div>
-			</td>
-      <td>
-			  <div class="cc-selector" onMouseDown="istimewa.play()">
-       <input id="sangatbaik3" type="radio" name="Parking_Price" value="4"/>
-       <label class="drinkcard-cc istimewa3" for="sangatbaik3"></label>
-   		</div>
-			</td>
-             <td>
-			  <div class="cc-selector" onMouseDown="baik.play()">
-       <input id="baik3" type="radio" name="Parking_Price" value="3"/>
-       <label class="drinkcard-cc baik3" for="baik3"></label>
-   		</div>
-			</td>
-			  <td>
-			  <div class="cc-selector" onMouseDown="cukup.play()">
-       <input id="lumayan3" type="radio" name="Parking_Price" value="2"/>
-       <label class="drinkcard-cc cukup3" for="lumayan3"></label>
-   		</div>
-			</td>
-       <td>
-       <div class="cc-selector" onMouseDown="buruk.play()">
-       <input id="buruk3" type="radio" name="Parking_Price" value="1"/>
-       <label class="drinkcard-cc buruk3" for="buruk3"></label>
-    		</div>
-			 </td>
-		</tr>
-		<tr>
-		<td><img src="img/Feedback Icons/box.png" alt="ap1"></td>
-	   			<td><font size="5px"> KETERSEDIAAN TROLLEY BARANG BAWAAN</font><input name="Trolley_Ready_4" type="hidden" value="4"> </td>
-              <td>
-      <div class="cc-selector" onMouseDown="sempurna.play()">
-       <input id="sempurna4" type="radio" name="Trolley_Ready" value="5"/>
-       <label class="drinkcard-cc istimewa4" for="sempurna4"></label>
-   		</div>
-			</td>
-       <td>
-			  <div class="cc-selector" onMouseDown="istimewa.play()">
-       <input id="sangatbaik4" type="radio" name="Trolley_Ready" value="4"/>
-       <label class="drinkcard-cc istimewa4" for="sangatbaik4"></label>
-   		</div>
-			</td>
-       <td>
-			  <div class="cc-selector" onMouseDown="baik.play()">
-       <input id="baik4" type="radio" name="Trolley_Ready" value="3"/>
-       <label class="drinkcard-cc baik4" for="baik4"></label>
-   		</div>
-			</td>
-			  <td>
-			  <div class="cc-selector" onMouseDown="cukup.play()">
-       <input id="lumayan4" type="radio" name="Trolley_Ready" value="2"/>
-       <label class="drinkcard-cc cukup4" for="lumayan4"></label>
-   		</div>
-			</td>
-       <td>
-       <div class="cc-selector" onMouseDown="buruk.play()">
-       <input id="buruk4" type="radio" name="Trolley_Ready" value="1"/>
-       <label class="drinkcard-cc buruk4" for="buruk4"></label>
-   		</div>
-			  </td>
-		</tr>
-		<tr>
-		<td><img src="img/Feedback Icons/racing.png" alt="ap1"></td>
-	   			<td><font size="5px"> WAKTU TUNGGU DI ANTRIAN CHECK-IN</font><input name="Waiting_Time_5" type="hidden" value="5"> </td>
-              <td>
-      <div class="cc-selector" onMouseDown="sempurna.play()">
-       <input id="sempurna5" type="radio" name="Waiting_Time" value="5"/>
-       <label class="drinkcard-cc istimewa5" for="sempurna5"></label>
-   		</div>
-			</td>
-       <td>
-			  <div class="cc-selector" onMouseDown="istimewa.play()">
-       <input id="sangatbaik5" type="radio" name="Waiting_Time" value="4"/>
-       <label class="drinkcard-cc istimewa5" for="sangatbaik5"></label>
-   		</div>
-			</td>
-       <td>
-			  <div class="cc-selector" onMouseDown="baik.play()">
-       <input id="baik5" type="radio" name="Waiting_Time" value="3"/>
-       <label class="drinkcard-cc baik5" for="baik5"></label>
-   		</div>
-			</td>
-			  <td>
-			  <div class="cc-selector" onMouseDown="cukup.play()">
-       <input id="lumayan5" type="radio" name="Waiting_Time" value="2"/>
-       <label class="drinkcard-cc cukup5" for="lumayan5"></label>
-   		</div>
-			</td>
-       <td>
-       <div class="cc-selector" onMouseDown="buruk.play()">
-       <input id="buruk5" type="radio" name="Waiting_Time" value="1"/>
-       <label class="drinkcard-cc buruk5" for="buruk5"></label>
-   		</div>
-			 </td>
-		</tr>
-		<tr>
-		<td><img src="img/Feedback Icons/ticket-office.png" alt="ap1"></td>
-	   			<td><font size="5px"> KEEFISIENAN PETUGAS CHECK-IN</font><input name="Staff_Efficiency_6" type="hidden" value="6"> </td>
-              <td>
-      <div class="cc-selector" onMouseDown="sempurna.play()">
-       <input id="sempurna6" type="radio" name="Staff_Efficiency" value="5"/>
-       <label class="drinkcard-cc istimewa6" for="sempurna6"></label>
-   		</div>
-			</td>
-       <td>
-			  <div class="cc-selector" onMouseDown="istimewa.play()">
-       <input id="sangatbaik6" type="radio" name="Staff_Efficiency" value="4"/>
-       <label class="drinkcard-cc istimewa6" for="sangatbaik6"></label>
-   		</div>
-			</td>
-       <td>
-			  <div class="cc-selector" onMouseDown="baik.play()">
-       <input id="baik6" type="radio" name="Staff_Efficiency" value="3"/>
-       <label class="drinkcard-cc baik6" for="baik6"></label>
-   		</div>
-			</td>
-			  <td>
-			  <div class="cc-selector" onMouseDown="cukup.play()">
-       <input id="lumayan6" type="radio" name="Staff_Efficiency" value="2"/>
-       <label class="drinkcard-cc cukup6" for="lumayan6"></label>
-   		</div>
-			</td>
-       <td>
-       <div class="cc-selector" onMouseDown="buruk.play()">
-       <input id="buruk6" type="radio" name="Staff_Efficiency" value="1"/>
-       <label class="drinkcard-cc buruk6" for="buruk6"></label>
-   		</div>
-			 </td>
-		</tr>
-		<tr>
-		<td><img src="img/Feedback Icons/ticket-collector.png" alt="ap1"></td>
-	   			<td><font size="5px"> KESOPANAN DAN KECEKATAN PETUGAS CHECK-IN</font><input name="Staff_Attitude_7" type="hidden" value="7"> </td>
-              <td>
-      <div class="cc-selector" onMouseDown="sempurna.play()">
-       <input id="sempurna7" type="radio" name="Staff_Attitude" value="5"/>
-       <label class="drinkcard-cc istimewa7" for="sempurna7"></label>
-   		</div>
-			</td>
-       <td>
-			  <div class="cc-selector" onMouseDown="istimewa.play()">
-       <input id="sangatbaik7" type="radio" name="Staff_Attitude" value="4"/>
-       <label class="drinkcard-cc istimewa7" for="sangatbaik7"></label>
-   		</div>
-			</td>
-       <td>
-			  <div class="cc-selector" onMouseDown="baik.play()">
-       <input id="baik7" type="radio" name="Staff_Attitude" value="3"/>
-       <label class="drinkcard-cc baik7" for="baik7"></label>
-   		</div>
-			</td>
-			  <td>
-			  <div class="cc-selector" onMouseDown="cukup.play()">
-       <input id="lumayan7" type="radio" name="Staff_Attitude" value="2"/>
-       <label class="drinkcard-cc cukup7" for="lumayan7"></label>
-   		</div>
-			</td>
-       <td>
-       <div class="cc-selector" onMouseDown="buruk.play()">
-       <input id="buruk7" type="radio" name="Staff_Attitude" value="1"/>
-       <label class="drinkcard-cc buruk7" for="buruk7"></label>
-   		</div>
-			 </td>
-		</tr>
-    <tr>
-    <td><img src="img/Feedback Icons/shield.png" alt="ap1"></td>
-         <td><font size="5px"> KETELITIAN PEMERIKSAAN KEAMANAN</font><input name="Safety_Check_8" type="hidden" value="8"> </td>
-             <td>
-      <div class="cc-selector" onMouseDown="sempurna.play()">
-       <input id="sempurna8" type="radio" name="Safety_Check" value="5"/>
-       <label class="drinkcard-cc istimewa" for="sempurna8"></label>
-       </div>
-     </td>
-       <td>
-       <div class="cc-selector" onMouseDown="istimewa.play()">
-       <input id="sangatbaik8" type="radio" name="Safety_Check" value="4"/>
-       <label class="drinkcard-cc istimewa" for="sangatbaik8"></label>
-       </div>
-     </td>
-       <td>
-       <div class="cc-selector" onMouseDown="baik.play()">
-       <input id="baik8" type="radio" name="Safety_Check" value="3"/>
-       <label class="drinkcard-cc baik" for="baik8"></label>
-       </div>
-     </td>
-       <td>
-       <div class="cc-selector" onMouseDown="cukup.play()">
-       <input id="lumayan8" type="radio" name="Safety_Check" value="2"/>
-       <label class="drinkcard-cc cukup" for="lumayan8"></label>
-       </div>
-     </td>
-       <td>
-       <div class="cc-selector" onMouseDown="buruk.play()">
-       <input id="buruk8" type="radio" name="Safety_Check" value="1"/>
-       <label class="drinkcard-cc buruk" for="buruk8"></label>
-       </div>
-     </td>
-   </tr>
-   <tr>
-   <td><img src="img/Feedback Icons/racing.png" alt="ap1"></td>
-        <td><font size="5px"> WAKTU TUNGGU PEMERIKSAAN KEAMANAN</font><input name="Safety_Time_9" type="hidden" value="9"> </td>
-            <td>
-     <div class="cc-selector" onMouseDown="sempurna.play()">
-      <input id="sempurna9" type="radio" name="Safety_Time" value="5"/>
-      <label class="drinkcard-cc istimewa" for="sempurna9"></label>
-      </div>
-    </td>
-      <td>
-      <div class="cc-selector" onMouseDown="istimewa.play()">
-      <input id="sangatbaik9" type="radio" name="Safety_Time" value="4"/>
-      <label class="drinkcard-cc istimewa" for="sangatbaik9"></label>
-      </div>
-    </td>
-      <td>
-      <div class="cc-selector" onMouseDown="baik.play()">
-      <input id="baik9" type="radio" name="Safety_Time" value="3"/>
-      <label class="drinkcard-cc baik" for="baik9"></label>
-      </div>
-    </td>
-      <td>
-      <div class="cc-selector" onMouseDown="cukup.play()">
-      <input id="lumayan9" type="radio" name="Safety_Time" value="2"/>
-      <label class="drinkcard-cc cukup" for="lumayan9"></label>
-      </div>
-    </td>
-      <td>
-      <div class="cc-selector" onMouseDown="buruk.play()">
-      <input id="buruk9" type="radio" name="Safety_Time" value="1"/>
-      <label class="drinkcard-cc buruk" for="buruk9"></label>
-      </div>
-      </td>
-  </tr>
-  <tr>
-  <td><img src="img/Feedback Icons/smile.png" alt="ap1"></td>
-       <td><font size="5px"> PERASAAN AMAN DAN NYAMAN DI BANDARA</font><input name="Safety_Feel_10" type="hidden" value="10"> </td>
-           <td>
-    <div class="cc-selector" onMouseDown="sempurna.play()">
-     <input id="sempurna10" type="radio" name="Safety_Feel" value="5"/>
-     <label class="drinkcard-cc istimewa" for="sempurna10"></label>
-     </div>
-   </td>
-     <td>
-     <div class="cc-selector" onMouseDown="istimewa.play()">
-     <input id="sangatbaik10" type="radio" name="Safety_Feel" value="4"/>
-     <label class="drinkcard-cc istimewa" for="sangatbaik10"></label>
-     </div>
-   </td>
-     <td>
-     <div class="cc-selector" onMouseDown="baik.play()">
-     <input id="baik10" type="radio" name="Safety_Feel" value="3"/>
-     <label class="drinkcard-cc baik" for="baik10"></label>
-     </div>
-   </td>
-     <td>
-     <div class="cc-selector" onMouseDown="cukup.play()">
-     <input id="lumayan10" type="radio" name="Safety_Feel" value="2"/>
-     <label class="drinkcard-cc cukup" for="lumayan10"></label>
-     </div>
-   </td>
-     <td>
-     <div class="cc-selector" onMouseDown="buruk.play()">
-     <input id="buruk10" type="radio" name="Safety_Feel" value="1"/>
-     <label class="drinkcard-cc buruk" for="buruk10"></label>
-     </div>
-     </td>
- </tr>
- <tr>
- <td><img src="img/Feedback Icons/seo.png" alt="ap1"></td>
-      <td><font size="5px"> KEMUDAHAN MENEMUKAN TUJUAN ANDA DI BANDARA</font><input name="Easy_Way_11" type="hidden" value="11"> </td>
-          <td>
-   <div class="cc-selector" onMouseDown="sempurna.play()">
-    <input id="sempurna11" type="radio" name="Easy_Way" value="5"/>
-    <label class="drinkcard-cc istimewa" for="sempurna11"></label>
-    </div>
-  </td>
-    <td>
-    <div class="cc-selector" onMouseDown="istimewa.play()">
-    <input id="sangatbaik11" type="radio" name="Easy_Way" value="4"/>
-    <label class="drinkcard-cc istimewa" for="sangatbaik11"></label>
-    </div>
-  </td>
-    <td>
-    <div class="cc-selector" onMouseDown="baik.play()">
-    <input id="baik11" type="radio" name="Easy_Way" value="3"/>
-    <label class="drinkcard-cc baik" for="baik11"></label>
-    </div>
-  </td>
-    <td>
-    <div class="cc-selector" onMouseDown="cukup.play()">
-    <input id="lumayan11" type="radio" name="Easy_Way" value="2"/>
-    <label class="drinkcard-cc cukup" for="lumayan11"></label>
-    </div>
-  </td>
-    <td>
-    <div class="cc-selector" onMouseDown="buruk.play()">
-    <input id="buruk11" type="radio" name="Easy_Way" value="1"/>
-    <label class="drinkcard-cc buruk" for="buruk11"></label>
-    </div>
-    </td>
-</tr>
-<tr>
-<td><img src="img/Feedback Icons/departure.png" alt="ap1"></td>
-     <td><font size="5px"> LAYAR INFORMASI PENERBANGAN</font><input name="Flight_Info_12" type="hidden" value="12"> </td>
-         <td>
-  <div class="cc-selector" onMouseDown="sempurna.play()">
-   <input id="sempurna12" type="radio" name="Flight_Info" value="5"/>
-   <label class="drinkcard-cc istimewa" for="sempurna12"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="istimewa.play()">
-   <input id="sangatbaik12" type="radio" name="Flight_Info" value="4"/>
-   <label class="drinkcard-cc istimewa" for="sangatbaik12"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="baik.play()">
-   <input id="baik12" type="radio" name="Flight_Info" value="3"/>
-   <label class="drinkcard-cc baik" for="baik12"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="cukup.play()">
-   <input id="lumayan12" type="radio" name="Flight_Info" value="2"/>
-   <label class="drinkcard-cc cukup" for="lumayan12"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="buruk.play()">
-   <input id="buruk12" type="radio" name="Flight_Info" value="1"/>
-   <label class="drinkcard-cc buruk" for="buruk12"></label>
-   </div>
-   </td>
-</tr>
-<tr>
-<td><img src="img/Feedback Icons/walker.png" alt="ap1"></td>
-     <td><font size="5px"> JARAK JALAN KAKI DI DALAM TERMINAL</font><input name="Distance_13" type="hidden" value="13"> </td>
-         <td>
-  <div class="cc-selector" onMouseDown="sempurna.play()">
-   <input id="sempurna13" type="radio" name="Distance" value="5"/>
-   <label class="drinkcard-cc istimewa" for="sempurna13"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="istimewa.play()">
-   <input id="sangatbaik13" type="radio" name="Distance" value="4"/>
-   <label class="drinkcard-cc istimewa" for="sangatbaik13"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="baik.play()">
-   <input id="baik13" type="radio" name="Distance" value="3"/>
-   <label class="drinkcard-cc baik" for="baik13"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="cukup.play()">
-   <input id="lumayan13" type="radio" name="Distance" value="2"/>
-   <label class="drinkcard-cc cukup" for="lumayan13"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="buruk.play()">
-   <input id="buruk13" type="radio" name="Distance" value="1"/>
-   <label class="drinkcard-cc buruk" for="buruk13"></label>
-   </div>
-   </td>
-</tr>
-<tr>
-<td><img src="img/Feedback Icons/fast-food.png" alt="ap1"></td>
-     <td><font size="5px"> FASILITAS RESTORAN MAKAN</font><input name="Restaurant_Facility_14" type="hidden" value="14"> </td>
-         <td>
-  <div class="cc-selector" onMouseDown="sempurna.play()">
-   <input id="sempurna14" type="radio" name="Restaurant_Facility" value="5"/>
-   <label class="drinkcard-cc istimewa" for="sempurna14"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="istimewa.play()">
-   <input id="sangatbaik14" type="radio" name="Restaurant_Facility" value="4"/>
-   <label class="drinkcard-cc istimewa" for="sangatbaik14"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="baik.play()">
-   <input id="baik14" type="radio" name="Restaurant_Facility" value="3"/>
-   <label class="drinkcard-cc baik" for="baik14"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="cukup.play()">
-   <input id="lumayan14" type="radio" name="Restaurant_Facility" value="2"/>
-   <label class="drinkcard-cc cukup" for="lumayan14"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="buruk.play()">
-   <input id="buruk14" type="radio" name="Restaurant_Facility" value="1"/>
-   <label class="drinkcard-cc buruk" for="buruk14"></label>
-   </div>
-   </td>
-</tr>
-<tr>
-<td><img src="img/Feedback Icons/wallet.png" alt="ap1"></td>
-     <td><font size="5px"> HARGA FASILITAS RESTORAN</font><input name="Restaurant_Price_15" type="hidden" value="15"> </td>
-         <td>
-  <div class="cc-selector" onMouseDown="sempurna.play()">
-   <input id="sempurna15" type="radio" name="Restaurant_Price" value="5"/>
-   <label class="drinkcard-cc istimewa" for="sempurna15"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="istimewa.play()">
-   <input id="sangatbaik15" type="radio" name="Restaurant_Price" value="4"/>
-   <label class="drinkcard-cc istimewa" for="sangatbaik15"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="baik.play()">
-   <input id="baik15" type="radio" name="Restaurant_Price" value="3"/>
-   <label class="drinkcard-cc baik" for="baik15"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="cukup.play()">
-   <input id="lumayan15" type="radio" name="Restaurant_Price" value="2"/>
-   <label class="drinkcard-cc cukup" for="lumayan15"></label>
-   </div>
- </td>
-   <td>
-   <div class="cc-selector" onMouseDown="buruk.play()">
-   <input id="buruk15" type="radio" name="Restaurant_Price" value="1"/>
-   <label class="drinkcard-cc buruk" for="buruk15"></label>
-   </div>
-   </td>
-</tr>
-  </tbody>
-  </table>
-  <table>
-    <tr>
-      <td>
-    <a href="index.php" class="btn btn-1x btn-1d" onMouseDown="button.play()"><img src="img/Feedback Icons/sweep.png" alt="ap1" width="5%" height="5%"> Kosongkan</a>
-    </td>
-    <td>
+    <?php
+    $page = "../index.html";
+    $sec = "180";
+    ?>
+    <meta http-equiv="refresh" content="<?php echo $sec; ?>;URL='<?php echo $page; ?>'">
+</head>
+<body>
 
-    <button class="btn btn-1 btn-1e" name="SUBMIT" id="submit_a" type="image" value="SUBMIT" onMouseDown="button.play()"><img src="img/Feedback Icons/checkmark.png" alt="ap1" width="5%" height="5%"> SUBMIT </button>
-  </td>
-    </tr>
-  </table>
-</td>
-<td width=2%>
-</td>
-<td width=15% valign=top>
-		<!--  <a href="../index.html" class="btn btn-1x btn-1d" onMouseDown="button.play()"><img src="img/st.png" alt="ap1" width="7%" height="7%"> Start New Survey</a> -->
-</td>
-</tr>
-</table>
-  </form>
+    <!-- Header Navigation matching index.html -->
+    <header class="header-nav">
+        <a href="../index.html" class="btn-back" onclick="try{buttonAudio.play();}catch(e){}">
+            <span>←</span> Kembali
+        </a>
 
-  <script>
-  var all = document.getElementById("sempurna16");
-  var all1 = document.getElementById("sangatbaik16");
-  var all2 = document.getElementById("baik16");
-  var all3 = document.getElementById("lumayan16");
-  var all4 = document.getElementById("buruk16");
-  all.onclick = function(){
-    document.getElementById("sempurna").checked = true;
-    document.getElementById("sempurna2").checked = true;
-    document.getElementById("sempurna3").checked = true;
-    document.getElementById("sempurna4").checked = true;
-    document.getElementById("sempurna5").checked = true;
-    document.getElementById("sempurna6").checked = true;
-    document.getElementById("sempurna7").checked = true;
-    document.getElementById("sempurna8").checked = true;
-    document.getElementById("sempurna8").checked = true;
-    document.getElementById("sempurna9").checked = true;
-    document.getElementById("sempurna10").checked = true;
-    document.getElementById("sempurna11").checked = true;
-    document.getElementById("sempurna12").checked = true;
-    document.getElementById("sempurna13").checked = true;
-    document.getElementById("sempurna14").checked = true;
-    document.getElementById("sempurna15").checked = true;
-  }
-  all1.onclick = function(){
-    document.getElementById("sangatbaik").checked = true;
-    document.getElementById("sangatbaik2").checked = true;
-    document.getElementById("sangatbaik3").checked = true;
-    document.getElementById("sangatbaik4").checked = true;
-    document.getElementById("sangatbaik5").checked = true;
-    document.getElementById("sangatbaik6").checked = true;
-    document.getElementById("sangatbaik7").checked = true;
-    document.getElementById("sangatbaik8").checked = true;
-    document.getElementById("sangatbaik8").checked = true;
-    document.getElementById("sangatbaik9").checked = true;
-    document.getElementById("sangatbaik10").checked = true;
-    document.getElementById("sangatbaik11").checked = true;
-    document.getElementById("sangatbaik12").checked = true;
-    document.getElementById("sangatbaik13").checked = true;
-    document.getElementById("sangatbaik14").checked = true;
-    document.getElementById("sangatbaik15").checked = true;
-  }
-  all2.onclick = function(){
-    document.getElementById("baik").checked = true;
-    document.getElementById("baik2").checked = true;
-    document.getElementById("baik3").checked = true;
-    document.getElementById("baik4").checked = true;
-    document.getElementById("baik5").checked = true;
-    document.getElementById("baik6").checked = true;
-    document.getElementById("baik7").checked = true;
-    document.getElementById("baik8").checked = true;
-    document.getElementById("baik8").checked = true;
-    document.getElementById("baik9").checked = true;
-    document.getElementById("baik10").checked = true;
-    document.getElementById("baik11").checked = true;
-    document.getElementById("baik12").checked = true;
-    document.getElementById("baik13").checked = true;
-    document.getElementById("baik14").checked = true;
-    document.getElementById("baik15").checked = true;
-  }
-  all3.onclick = function(){
-    document.getElementById("lumayan").checked = true;
-    document.getElementById("lumayan2").checked = true;
-    document.getElementById("lumayan3").checked = true;
-    document.getElementById("lumayan4").checked = true;
-    document.getElementById("lumayan5").checked = true;
-    document.getElementById("lumayan6").checked = true;
-    document.getElementById("lumayan7").checked = true;
-    document.getElementById("lumayan8").checked = true;
-    document.getElementById("lumayan8").checked = true;
-    document.getElementById("lumayan9").checked = true;
-    document.getElementById("lumayan10").checked = true;
-    document.getElementById("lumayan11").checked = true;
-    document.getElementById("lumayan12").checked = true;
-    document.getElementById("lumayan13").checked = true;
-    document.getElementById("lumayan14").checked = true;
-    document.getElementById("lumayan15").checked = true;
-  }
-  all4.onclick = function(){
-    document.getElementById("buruk").checked = true;
-    document.getElementById("buruk2").checked = true;
-    document.getElementById("buruk3").checked = true;
-    document.getElementById("buruk4").checked = true;
-    document.getElementById("buruk5").checked = true;
-    document.getElementById("buruk6").checked = true;
-    document.getElementById("buruk7").checked = true;
-    document.getElementById("buruk8").checked = true;
-    document.getElementById("buruk8").checked = true;
-    document.getElementById("buruk9").checked = true;
-    document.getElementById("buruk10").checked = true;
-    document.getElementById("buruk11").checked = true;
-    document.getElementById("buruk12").checked = true;
-    document.getElementById("buruk13").checked = true;
-    document.getElementById("buruk14").checked = true;
-    document.getElementById("buruk15").checked = true;
-  }
-  </script>
+        <div class="clock-badge">
+            <span id="date_time">Loading...</span>
+        </div>
+    </header>
 
-  <script src="js/boostrap.js"></script>
-  <script>document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false}); let lastTouchEnd=0; document.addEventListener('touchend',function(e){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},false);</script><script>const IDLE_LIMIT=30000;let kioskIdleTimer;function resetIdleTimer(){clearTimeout(kioskIdleTimer);kioskIdleTimer=setTimeout(function(){window.location.href="../wayfinding/index-fixed.html?ss=1";},IDLE_LIMIT);}['touchstart','click','mousemove','scroll','keypress'].forEach(evt=>document.addEventListener(evt,resetIdleTimer,{passive:true}));resetIdleTimer();</script></body>
+    <?php
+    $length = 10;
+    $randomString = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    $cookie = $randomString;
+    ?>
+
+    <!-- Main POST Form for Backend (proses.php & insert.php) -->
+    <form id="feedbackForm" method="post" action="proses.php">
+        <input name="cookies" type="hidden" value="<?php echo $cookie; ?>">
+
+        <!-- Hidden input pairs for all 13 units -->
+        <input name="Airport_Transport_1" type="hidden" value="1">
+        <input type="hidden" id="val_Airport_Transport" name="Airport_Transport" value="3">
+
+        <input name="Parking_Facility_2" type="hidden" value="2">
+        <input type="hidden" id="val_Parking_Facility" name="Parking_Facility" value="3">
+
+        <input name="Trolley_Ready_4" type="hidden" value="4">
+        <input type="hidden" id="val_Trolley_Ready" name="Trolley_Ready" value="3">
+
+        <input name="Waiting_Time_5" type="hidden" value="5">
+        <input type="hidden" id="val_Waiting_Time" name="Waiting_Time" value="3">
+
+        <input name="Staff_Efficiency_6" type="hidden" value="6">
+        <input type="hidden" id="val_Staff_Efficiency" name="Staff_Efficiency" value="3">
+
+        <input name="Staff_Attitude_7" type="hidden" value="7">
+        <input type="hidden" id="val_Staff_Attitude" name="Staff_Attitude" value="3">
+
+        <input name="Safety_Check_8" type="hidden" value="8">
+        <input type="hidden" id="val_Safety_Check" name="Safety_Check" value="3">
+
+        <input name="Safety_Time_9" type="hidden" value="9">
+        <input type="hidden" id="val_Safety_Time" name="Safety_Time" value="3">
+
+        <input name="Safety_Feel_10" type="hidden" value="10">
+        <input type="hidden" id="val_Safety_Feel" name="Safety_Feel" value="3">
+
+        <input name="Easy_Way_11" type="hidden" value="11">
+        <input type="hidden" id="val_Easy_Way" name="Easy_Way" value="3">
+
+        <input name="Flight_Info_12" type="hidden" value="12">
+        <input type="hidden" id="val_Flight_Info" name="Flight_Info" value="3">
+
+        <input name="Distance_13" type="hidden" value="13">
+        <input type="hidden" id="val_Distance" name="Distance" value="3">
+
+        <input name="Restaurant_Facility_14" type="hidden" value="14">
+        <input type="hidden" id="val_Restaurant_Facility" name="Restaurant_Facility" value="3">
+
+        <input name="Kebersihan_Terminal_16" type="hidden" value="16">
+        <input type="hidden" id="val_Kebersihan_Terminal" name="Kebersihan_Terminal" value="3">
+
+        <input type="hidden" name="SUBMIT" value="SUBMIT">
+    </form>
+
+    <!-- Viewport Container for 3-Step Flow -->
+    <main class="viewport-container">
+
+        <!-- STEP 1: Interactive Question & Rating Slider -->
+        <div id="viewStep1" class="step-card">
+            <div id="unitIcon" class="unit-icon-wrapper">
+                <!-- SVG Icon injected by JS -->
+            </div>
+
+            <h2 id="unitTitle" class="question-text">
+                Transportasi Darat Dari & Ke Bandara
+            </h2>
+
+            <!-- Interactive Horizontal Slider -->
+            <div class="slider-container" id="sliderContainer">
+                <div class="slider-track-line">
+                    <div id="sliderFill" class="slider-track-fill" style="width: 50%;"></div>
+                </div>
+
+                <div class="emoji-nodes-grid">
+                    <!-- 1: Buruk -->
+                    <div class="emoji-node-item" data-value="1" onclick="selectRating(1)">
+                        <div class="emoji-circle">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 16C15 14.5 13.5 14 12 14C10.5 14 9 14.5 8 16" stroke-linecap="round"/><circle cx="9" cy="9" r="1.5" fill="currentColor"/><circle cx="15" cy="9" r="1.5" fill="currentColor"/></svg>
+                        </div>
+                        <span class="emoji-label">Buruk</span>
+                    </div>
+
+                    <!-- 2: Lumayan -->
+                    <div class="emoji-node-item" data-value="2" onclick="selectRating(2)">
+                        <div class="emoji-circle">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15.5 15.5C14.5 14.8 13.3 14.5 12 14.5C10.7 14.5 9.5 14.8 8.5 15.5" stroke-linecap="round"/><circle cx="9" cy="9.5" r="1.5" fill="currentColor"/><circle cx="15" cy="9.5" r="1.5" fill="currentColor"/></svg>
+                        </div>
+                        <span class="emoji-label">Lumayan</span>
+                    </div>
+
+                    <!-- 3: Baik -->
+                    <div class="emoji-node-item" data-value="3" onclick="selectRating(3)">
+                        <div class="emoji-circle">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15" stroke-linecap="round"/><circle cx="9" cy="9.5" r="1.5" fill="currentColor"/><circle cx="15" cy="9.5" r="1.5" fill="currentColor"/></svg>
+                        </div>
+                        <span class="emoji-label">Baik</span>
+                    </div>
+
+                    <!-- 4: Sangat Baik -->
+                    <div class="emoji-node-item" data-value="4" onclick="selectRating(4)">
+                        <div class="emoji-circle">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14C9 15.5 10.5 16.5 12 16.5C13.5 16.5 15 15.5 16 14" stroke-linecap="round"/><circle cx="9" cy="9.5" r="1.5" fill="currentColor"/><circle cx="15" cy="9.5" r="1.5" fill="currentColor"/></svg>
+                        </div>
+                        <span class="emoji-label">Sangat Baik</span>
+                    </div>
+
+                    <!-- 5: Sempurna -->
+                    <div class="emoji-node-item" data-value="5" onclick="selectRating(5)">
+                        <div class="emoji-circle">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M7.5 13.5C8.5 16 10.2 17 12 17C13.8 17 15.5 16 16.5 13.5" stroke-linecap="round"/><path d="M7.5 9.5C8 8.5 9 8.5 9.5 9.5" stroke-linecap="round"/><path d="M14.5 9.5C15 8.5 16 8.5 16.5 9.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <span class="emoji-label">Sempurna</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Progress Indicator -->
+            <div id="progressBox" class="progress-indicator" style="margin-top: 24px;">
+                Pertanyaan <span id="currentStepNum">1</span> dari 14
+            </div>
+
+            <!-- Card Step Navigation Action Buttons -->
+            <div class="card-step-actions">
+                <button id="btnBackCard" class="btn-nav-action btn-secondary" onclick="handleBack()">
+                    <span>←</span> <span id="lblBack">Kembali</span>
+                </button>
+
+                <button id="btnNextCard" class="btn-nav-action" onclick="handleNext()">
+                    <span id="lblNext">Selanjutnya</span> <span>→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 2: Confirmation Card -->
+        <div id="viewStep2" class="step-card confirmation-card hidden">
+            <div class="unit-icon-wrapper" style="background: rgba(77, 194, 198, 0.12); color: var(--brand-blue);">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </div>
+
+            <h2 class="confirm-question">
+                Apakah Anda Yakin Dengan Pilihan Anda?
+            </h2>
+
+            <div class="confirm-btn-group">
+                <button class="btn-confirm btn-no" onclick="backToQuestions()">
+                    <span>←</span> Belum
+                </button>
+                <button class="btn-confirm btn-yes" onclick="submitFeedback()">
+                    <span>✓</span> Sudah
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 3: Thank You Card -->
+        <div id="viewStep3" class="step-card hidden">
+            <div class="thankyou-icon">✓</div>
+
+            <h2 class="thankyou-heading">Terima Kasih!</h2>
+
+            <p class="thankyou-desc">
+                Terima Kasih Feedback yang diberikan untuk peningkatan kualitas pelayanan Bandara Ahmad Yani Semarang.
+            </p>
+
+            <button class="btn-nav-action" onclick="finishAndRedirect()" style="padding: 16px 40px; font-size: 17px;">
+                <span>←</span> Kembali ke Utama
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Pure JS Interactive Logic -->
+    <script>
+        // 14 Active Units Data
+        var questionsData = [
+            {
+                fieldName: "Airport_Transport",
+                title: "Transportasi Darat Dari & Ke Bandara",
+                svg: '<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4h14v4z"/><circle cx="7.5" cy="15" r="1.5"/><circle cx="16.5" cy="15" r="1.5"/></svg>'
+            },
+            {
+                fieldName: "Parking_Facility",
+                title: "Fasilitas Parkir",
+                svg: '<svg viewBox="0 0 24 24"><path d="M13.2 11H10V7h3.2c1.1 0 2 .9 2 2s-.9 2-2 2zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5.8 10H10v4H8V5h5.2c2.2 0 4 1.8 4 4s-1.8 4-4 4z"/></svg>'
+            },
+            {
+                fieldName: "Trolley_Ready",
+                title: "Ketersediaan Trolley Barang Bawaan",
+                svg: '<svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>'
+            },
+            {
+                fieldName: "Waiting_Time",
+                title: "Waktu Tunggu Di Antrian Check-In",
+                svg: '<svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>'
+            },
+            {
+                fieldName: "Staff_Efficiency",
+                title: "Keefisienan Petugas Check-In",
+                svg: '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>'
+            },
+            {
+                fieldName: "Staff_Attitude",
+                title: "Kesopanan Dan Kecekatan Petugas Bandara",
+                svg: '<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'
+            },
+            {
+                fieldName: "Safety_Check",
+                title: "Ketelitian Pemeriksaan Keamanan",
+                svg: '<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>'
+            },
+            {
+                fieldName: "Safety_Time",
+                title: "Waktu Tunggu Pemeriksaan Keamanan",
+                svg: '<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm1 14h-2v-6h2v6zm0-8h-2V5h2v2z"/></svg>'
+            },
+            {
+                fieldName: "Safety_Feel",
+                title: "Perasaan Aman Dan Nyaman Di Bandara",
+                svg: '<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 10.7c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>'
+            },
+            {
+                fieldName: "Easy_Way",
+                title: "Kemudahan Menemukan Tujuan Anda Di Bandara",
+                svg: '<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>'
+            },
+            {
+                fieldName: "Flight_Info",
+                title: "Layar Informasi Penerbangan",
+                svg: '<svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>'
+            },
+            {
+                fieldName: "Distance",
+                title: "Jarak Jalan Kaki Di Dalam Terminal",
+                svg: '<svg viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7z"/></svg>'
+            },
+            {
+                fieldName: "Restaurant_Facility",
+                title: "Fasilitas Restoran Makan",
+                svg: '<svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.55 3.89 3.57 4.23V22h2.86v-8.77C11.45 12.89 13 11.12 13 9V2h-2v7zm5-3v6h3v10h2V2c-2.76 0-5 2.24-5 4z"/></svg>'
+            },
+            {
+                fieldName: "Kebersihan_Terminal",
+                title: "Kebersihan Terminal",
+                svg: '<svg viewBox="0 0 24 24"><path d="M19.36 2.72l-1.42-1.42-3.88 3.88 1.42 1.42 3.88-3.88zM6.5 10c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm13.14 8.14l-8.5-8.5c-.39-.39-1.02-.39-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41l8.5 8.5c.39.39 1.02.39 1.41 0l1.42-1.42c.39-.39.39-1.02 0-1.41zM3 21h4v-2H3v2z"/></svg>'
+            }
+        ];
+
+        var currentIndex = 0;
+        var userRatings = {}; // Stores rating 1..5 for each question
+
+        // Track fill percentages & colors
+        var fillPercentages = { 1: 0, 2: 25, 3: 50, 4: 75, 5: 100 };
+        var fillColors = {
+            1: "#ec6a56",
+            2: "#faaf40",
+            3: "#4dc2c6",
+            4: "#9ebc2e",
+            5: "#10b981"
+        };
+
+        var isDragging = false;
+
+        function getRatingFromX(clientX) {
+            var container = document.getElementById("sliderContainer");
+            if (!container) return 3;
+            var rect = container.getBoundingClientRect();
+            var x = clientX - rect.left;
+            var ratio = x / rect.width;
+            var val = Math.round(ratio * 4) + 1;
+            return Math.min(5, Math.max(1, val));
+        }
+
+        // Realtime Clock script matching main page
+        function updateClock() {
+            var now = new Date();
+            var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            
+            var dayName = days[now.getDay()];
+            var dayNum = now.getDate();
+            var monthName = months[now.getMonth()];
+            var year = now.getFullYear();
+
+            var hours = String(now.getHours()).padStart(2, '0');
+            var minutes = String(now.getMinutes()).padStart(2, '0');
+            var seconds = String(now.getSeconds()).padStart(2, '0');
+
+            var formatted = dayName + ', ' + dayNum + ' ' + monthName + ' ' + year + ' | ' + hours + ':' + minutes + ':' + seconds;
+            var el = document.getElementById('date_time');
+            if (el) el.innerText = formatted;
+        }
+
+        setInterval(updateClock, 1000);
+
+        var autoAdvanceTimer = null;
+
+        function setStep(stepNum) {
+            if (autoAdvanceTimer) {
+                clearTimeout(autoAdvanceTimer);
+                autoAdvanceTimer = null;
+            }
+
+            var s1 = document.getElementById("viewStep1");
+            var s2 = document.getElementById("viewStep2");
+            var s3 = document.getElementById("viewStep3");
+
+            if (s1) s1.classList.add("hidden");
+            if (s2) s2.classList.add("hidden");
+            if (s3) s3.classList.add("hidden");
+
+            var activeStep = (stepNum === 1) ? s1 : (stepNum === 2) ? s2 : s3;
+            if (activeStep) {
+                activeStep.classList.remove("hidden");
+                activeStep.classList.remove("fade-in");
+                void activeStep.offsetWidth; // force DOM reflow
+                activeStep.classList.add("fade-in");
+            }
+        }
+
+        // Initialize view
+        window.onload = function() {
+            updateClock();
+            
+            // Set default rating 3 for all questions
+            for (var i = 0; i < questionsData.length; i++) {
+                userRatings[i] = 3;
+            }
+
+            // Check URL parameters for direct step testing (?step=2 or ?step=3)
+            var urlParams = new URLSearchParams(window.location.search);
+            var stepParam = parseInt(urlParams.get('step'));
+
+            if (stepParam === 2) {
+                showConfirmation();
+            } else if (stepParam === 3) {
+                setStep(3);
+            } else {
+                renderQuestion(0);
+            }
+
+            var sliderContainer = document.getElementById("sliderContainer");
+            if (sliderContainer) {
+                sliderContainer.addEventListener("pointerdown", function(e) {
+                    isDragging = true;
+                    try { sliderContainer.setPointerCapture(e.pointerId); } catch(err){}
+                    var val = getRatingFromX(e.clientX);
+                    if (userRatings[currentIndex] !== val) selectRating(val, true, true);
+                });
+
+                sliderContainer.addEventListener("pointermove", function(e) {
+                    if (!isDragging) return;
+                    var val = getRatingFromX(e.clientX);
+                    if (userRatings[currentIndex] !== val) selectRating(val, true, true);
+                });
+
+                sliderContainer.addEventListener("pointerup", function(e) {
+                    isDragging = false;
+                });
+
+                sliderContainer.addEventListener("pointercancel", function(e) {
+                    isDragging = false;
+                });
+            }
+        };
+
+        function renderQuestion(index) {
+            if (index < 0) index = 0;
+            if (index >= questionsData.length) {
+                showConfirmation();
+                return;
+            }
+
+            currentIndex = index;
+            var q = questionsData[index];
+
+            // Update UI Title & Icon
+            document.getElementById("unitIcon").innerHTML = q.svg;
+            document.getElementById("unitTitle").innerText = q.title;
+            document.getElementById("currentStepNum").innerText = index + 1;
+
+            // Highlight selected rating node
+            var currentVal = userRatings[index] || 3;
+            selectRating(currentVal, false, true);
+
+            // Update Header Buttons Text
+            document.getElementById("lblBack").innerText = (index === 0) ? "Kembali" : "Sebelumnya";
+            document.getElementById("lblNext").innerText = (index === questionsData.length - 1) ? "Konfirmasi" : "Selanjutnya";
+
+            // Show Step 1 Card
+            setStep(1);
+        }
+
+        function selectRating(val, playAudio, skipAutoAdvance) {
+            if (playAudio !== false) playSound(val);
+            userRatings[currentIndex] = val;
+
+            // Update hidden input for backend form submit
+            var fieldName = questionsData[currentIndex].fieldName;
+            var hiddenInput = document.getElementById("val_" + fieldName);
+            if (hiddenInput) hiddenInput.value = val;
+
+            // Update Slider Track Fill width & color
+            var fill = document.getElementById("sliderFill");
+            if (fill) {
+                fill.style.width = fillPercentages[val] + "%";
+                fill.style.backgroundColor = fillColors[val];
+            }
+
+            // Update active styling on emoji nodes
+            var nodes = document.querySelectorAll(".emoji-node-item");
+            nodes.forEach(function(node) {
+                var nodeVal = parseInt(node.getAttribute("data-value"));
+                if (nodeVal === val) {
+                    node.classList.add("active");
+                } else {
+                    node.classList.remove("active");
+                }
+            });
+
+            // Auto-advance to next question or Step 2 after 500ms when user taps an emoji
+            if (!skipAutoAdvance) {
+                if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
+                autoAdvanceTimer = setTimeout(function() {
+                    handleNext();
+                }, 500);
+            }
+        }
+
+        function handleNext() {
+            if (autoAdvanceTimer) {
+                clearTimeout(autoAdvanceTimer);
+                autoAdvanceTimer = null;
+            }
+            try { buttonAudio.play(); } catch(e){}
+            if (currentIndex < questionsData.length - 1) {
+                renderQuestion(currentIndex + 1);
+            } else {
+                showConfirmation();
+            }
+        }
+
+        function handleBack() {
+            if (autoAdvanceTimer) {
+                clearTimeout(autoAdvanceTimer);
+                autoAdvanceTimer = null;
+            }
+            try { buttonAudio.play(); } catch(e){}
+            if (currentIndex > 0) {
+                renderQuestion(currentIndex - 1);
+            } else {
+                window.location.href = "../index.html";
+            }
+        }
+
+        function showConfirmation() {
+            setStep(2);
+        }
+
+        function backToQuestions() {
+            try { buttonAudio.play(); } catch(e){}
+            renderQuestion(questionsData.length - 1);
+        }
+
+        function submitFeedback() {
+            try { buttonAudio.play(); } catch(e){}
+            setStep(3);
+
+            // Perform background submit to backend (proses.php & insert.php)
+            var form = document.getElementById("feedbackForm");
+            var formData = new FormData(form);
+            formData.append("SUBMIT", "SUBMIT");
+
+            fetch("proses.php", {
+                method: "POST",
+                body: formData
+            }).catch(function(err){ console.log(err); });
+        }
+
+        function finishAndRedirect() {
+            try { buttonAudio.play(); } catch(e){}
+            window.location.href = "../index.html";
+        }
+    </script>
+
+</body>
 </html>

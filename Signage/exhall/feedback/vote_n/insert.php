@@ -464,4 +464,34 @@
 																		}
 
 
+																	//Terminal_Cleanliness / Kebersihan_Terminal
+																		if ((isset($_POST['Terminal_Cleanliness_16']) && isset($_POST['Terminal_Cleanliness'])) || (isset($_POST['Kebersihan_Terminal_16']) && isset($_POST['Kebersihan_Terminal'])))
+																		{
+																				  $zx = isset($_POST['Terminal_Cleanliness_16']) ? $_POST['Terminal_Cleanliness_16'] : $_POST['Kebersihan_Terminal_16'];
+																				  $ky = isset($_POST['Terminal_Cleanliness']) ? $_POST['Terminal_Cleanliness'] : $_POST['Kebersihan_Terminal'];
+																				  if($ky=='1')
+																				  {
+																				  $status = '1';
+																				  }
+																				  elseif($ky=='2')
+																				  {
+																				  $status = '2';
+																				  }
+																				   elseif($ky=='3')
+																				  {
+																				  $status = '3';
+																				  }
+																				   elseif($ky=='4')
+																				  {
+																				  $status = '4';
+																				  }
+																					elseif($ky=='5')
+																				 {
+																				 $status = '5';
+																				 }
+																					$query_insert="insert into rate_n (cookie,Id_vote,Id_unit,date_time) values('$cookie','$status','$zx',now())";
+																		$insert=mysql_query($query_insert);
+																		}
+
+
 ?>

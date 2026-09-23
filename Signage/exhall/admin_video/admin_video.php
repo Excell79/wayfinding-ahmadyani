@@ -1,5 +1,5 @@
 <?php
-require 'koneksi.php';
+require '../feedback/koneksi.php';
 
 // Tentukan alamat mutlak gudang video (biar server ga nyasar)
 $target_dir = __DIR__ . "/../wayfinding/videos/";

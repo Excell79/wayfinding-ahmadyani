@@ -123,7 +123,7 @@ buruk.src = '1.mp3';
 		$sec = "180";
 		?>
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
-<style>::-webkit-scrollbar{display:none !important;} *{scrollbar-width:none !important;}</style><style>body{touch-action:pan-x pan-y;user-select:none;-webkit-user-select:none;}</style></head>
+</head>
 <body style="background-image(img/background.png)" onLoad="buttonxx.play()" oncontextmenu='return false;' onkeydown='return false;' onmousedown='return false;'>
   <div class="header">
     <a href="http://localhost/kio/home/">
@@ -689,5 +689,5 @@ $cookie = $randomString;
   </form>
 
   <script src="js/boostrap.js"></script>
-  <script>document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false}); let lastTouchEnd=0; document.addEventListener('touchend',function(e){const now=(new Date()).getTime();if(now-lastTouchEnd<=300)e.preventDefault();lastTouchEnd=now;},false);</script><script>const IDLE_LIMIT=30000;let kioskIdleTimer;function resetIdleTimer(){clearTimeout(kioskIdleTimer);kioskIdleTimer=setTimeout(function(){window.location.href="../wayfinding/index-fixed.html?ss=1";},IDLE_LIMIT);}['touchstart','click','mousemove','scroll','keypress'].forEach(evt=>document.addEventListener(evt,resetIdleTimer,{passive:true}));resetIdleTimer();</script></body>
+  </body>
 </html>

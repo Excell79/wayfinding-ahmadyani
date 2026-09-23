@@ -1,6 +1,6 @@
 <?php
  //mengambil variabel yang dikirim oleh page1.php
- if(isset($_POST["SUBMIT"]))
+ if(isset($_POST["SUBMIT"]) || $_SERVER['REQUEST_METHOD'] === 'POST')
  {
 if(empty($_POST['Airport_Transport']) && empty($_POST['Parking_Facility']) && empty($_POST['Parking_Price']) && empty($_POST['Trolley_Ready']) && empty($_POST['Waiting_Time']) && empty($_POST['Staff_Efficiency']) && empty($_POST['Staff_Attitude'])
                  && empty($_POST['Safety_Check']) && empty($_POST['Safety_Time']) && empty($_POST['Safety_Feel']) && empty($_POST['Easy_Way']) && empty($_POST['Flight_Info']) && empty($_POST['Distance']) && empty($_POST['Restaurant_Facility'])

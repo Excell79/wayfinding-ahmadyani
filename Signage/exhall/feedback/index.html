@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <title>Feedback System — Bandara Internasional Ahmad Yani Semarang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Feedback & Saran System Kiosk Bandara Ahmad Yani Semarang">
+  <meta http-equiv="refresh" content="180; url=../">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- Pure Vanilla CSS Design System -->
+  <style>
+    :root {
+      --brand-red: #ec6a56;
+      --brand-yellow: #faaf40;
+      --brand-blue: #4dc2c6;
+      --brand-green: #9ebc2e;
+      --brand-emerald: #10b981;
+
+      --bg-page: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.94);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --border-color: #e2e8f0;
+      --font-plus-jakarta: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-plus-jakarta);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Pure White Page Canvas & Background Carousel Container */
+    .bg-carousel-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      background-color: #ffffff;
+      pointer-events: none;
+    }
+
+    .bg-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      filter: grayscale(15%) contrast(105%);
+      transition: opacity 1.5s ease-in-out, transform 8s ease-out;
+      transform: scale(1.04);
+    }
+
+    .bg-slide.active {
+      opacity: 0.35;
+      transform: scale(1);
+    }
+
+    /* Pure White Overlay on top of carousel with soft blur */
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.20);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 1;
+    }
+
+    /* Header Navigation Bar */
+    .header-nav {
+      width: 100%;
+      height: 76px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      position: relative;
+      z-index: 50;
+    }
+
+    /* 4-Color Solid Brand Bar at top of Header */
+    .header-nav::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(to right, #ec6a56 25%, #faaf40 25% 50%, #4dc2c6 50% 75%, #9ebc2e 75%);
+      z-index: 100;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: #ffffff;
+      color: var(--text-primary);
+      border: 2px solid var(--border-color);
+      border-radius: 50px;
+      font-family: var(--font-plus-jakarta);
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      box-shadow: none;
+    }
+
+    .btn-back:hover,
+    .btn-back:active {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      transform: scale(0.98);
+    }
+
+    .clock-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      background: #ffffff;
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 2px solid var(--border-color);
+      text-align: right;
+      line-height: 1.3;
+      max-width: 100%;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    /* Main Center Viewport */
+    .main-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+      z-index: 10;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-top: 4px solid var(--brand-blue);
+      border-radius: 28px;
+      padding: 56px 48px;
+      width: 100%;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .airport-badge {
+      width: 80px;
+      height: 80px;
+      background: rgba(77, 194, 198, 0.12);
+      border: 2px solid rgba(77, 194, 198, 0.3);
+      color: var(--brand-blue);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 20px rgba(77, 194, 198, 0.15);
+    }
+
+    .airport-badge svg {
+      width: 42px;
+      height: 42px;
+      fill: currentColor;
+    }
+
+    .hero-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+      max-width: 760px;
+    }
+
+    /* Logo Image in Header and Hero (Black filter) */
+    .header-logo-img {
+      height: 38px;
+      width: auto;
+      max-width: 240px;
+      object-fit: contain;
+      filter: brightness(0);
+    }
+
+    .hero-logo-wrapper {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .hero-logo-img {
+      max-width: 480px;
+      width: 90%;
+      height: auto;
+      object-fit: contain;
+      filter: brightness(0);
+    }
+
+    .hero-subtitle {
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin: 0 auto 40px;
+      letter-spacing: -0.2px;
+      max-width: 580px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* Action Buttons Grid */
+    .cta-action-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .btn-cta {
+      flex: 1;
+      min-height: 76px;
+      padding: 18px 32px;
+      border-radius: 50px;
+      font-family: var(--font-plus-jakarta);
+      font-weight: 800;
+      font-size: 22px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Feedback & Saran Buttons — Light Blue (#4dc2c6) matching card top border */
+    .btn-cta-feedback,
+    .btn-cta-saran {
+      background-color: #4dc2c6;
+      color: #ffffff;
+    }
+
+    .btn-cta-feedback:hover,
+    .btn-cta-saran:hover {
+      background-color: #3caeb2;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px rgba(77, 194, 198, 0.4);
+    }
+
+    .btn-cta:active {
+      transform: scale(0.97);
+    }
+
+    .btn-cta svg {
+      width: 28px;
+      height: 28px;
+      fill: #ffffff;
+    }
+
+    /* Responsive Media Queries */
+    @media screen and (max-width: 768px) {
+      .header-nav {
+        height: 72px;
+        padding: 0 20px;
+      }
+
+      .btn-back {
+        padding: 12px 24px;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .clock-badge {
+        font-size: 13px;
+        padding: 8px 18px;
+      }
+
+      .hero-card {
+        padding: 44px 28px;
+        border-radius: 28px;
+      }
+
+      .airport-badge {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 20px;
+      }
+
+      .airport-badge svg {
+        width: 36px;
+        height: 36px;
+      }
+
+      .hero-title {
+        font-size: 26px;
+        margin-bottom: 12px;
+      }
+
+      .hero-subtitle {
+        font-size: 17px;
+        margin-bottom: 36px;
+      }
+
+      .cta-action-grid {
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+
+      .btn-cta {
+        min-height: 72px;
+        padding: 16px 24px;
+        font-size: 20px;
+        font-weight: 800;
+        border-radius: 50px;
+        width: 100%;
+      }
+
+      .btn-cta svg {
+        width: 26px;
+        height: 26px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .header-nav {
+        height: auto;
+        min-height: 64px;
+        padding: 10px 14px;
+        gap: 8px;
+      }
+
+      .btn-back {
+        padding: 10px 16px;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .clock-badge {
+        font-size: 11px;
+        padding: 6px 12px;
+        border-radius: 14px;
+        white-space: normal;
+        word-break: break-word;
+        text-align: right;
+        max-width: calc(100% - 110px);
+        line-height: 1.25;
+      }
+
+      .main-container {
+        padding: 16px 12px;
+      }
+
+      .hero-card {
+        padding: 36px 20px;
+        border-radius: 24px;
+      }
+
+      .hero-title {
+        font-size: 22px;
+        line-height: 1.3;
+      }
+
+      .hero-subtitle {
+        font-size: 15px;
+        margin-bottom: 32px;
+      }
+
+      .cta-action-grid {
+        gap: 16px;
+        width: 100%;
+      }
+
+      .btn-cta {
+        min-height: 66px;
+        padding: 16px 20px;
+        font-size: 19px;
+        font-weight: 800;
+        border-radius: 50px;
+        width: 100%;
+      }
+
+      .btn-cta svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+
+  <!-- Auto Background Carousel with White Surface & Low Opacity -->
+  <div class="bg-carousel-container">
+    <div class="bg-slide active" style="background-image: url('_include/img/slider-images/image01.jpg');"></div>
+    <div class="bg-slide" style="background-image: url('_include/img/slider-images/image02.jpg');"></div>
+    <div class="bg-slide" style="background-image: url('_include/img/slider-images/image03.jpg');"></div>
+    <div class="bg-slide" style="background-image: url('_include/img/slider-images/image04.jpg');"></div>
+    <div class="bg-overlay"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header-nav">
+    <a href="../" class="btn-back" onclick="playBtnSound()">
+      <span>←</span> Kembali
+    </a>
+
+    <div class="clock-badge">
+      <span id="date_time">Loading...</span>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-container">
+    <div class="hero-card">
+      <div class="hero-logo-wrapper">
+        <img src="../wayfinding/gambar/Home/JenderalAhmadYani.png" alt="Bandara Internasional Ahmad Yani Semarang" class="hero-logo-img">
+      </div>
+
+      <p class="hero-subtitle">
+        Sampaikan pengalaman dan masukan Anda untuk membantu kami terus meningkatkan kualitas pelayanan di bandara.
+      </p>
+
+      <div class="cta-action-grid">
+        <!-- Feedback Button -->
+        <a href="vote_n/index.php" class="btn-cta btn-cta-feedback" onclick="playBtnSound()">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z" />
+          </svg>
+          Feedback
+        </a>
+
+        <!-- Saran Button -->
+        <a href="sender/index.php" class="btn-cta btn-cta-saran" onclick="playBtnSound()">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+          Saran
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Audio & Interactive Scripts -->
+  <script>
+    var btnAudio = new Audio('vote_n/button.mp3');
+    function playBtnSound() {
+      try { btnAudio.play(); } catch (e) { }
+    }
+
+    // Live Realtime Date & Time Clock in Indonesian
+    function updateClock() {
+      var now = new Date();
+      var days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+      var dayName = days[now.getDay()];
+      var dayNum = now.getDate();
+      var monthName = months[now.getMonth()];
+      var year = now.getFullYear();
+
+      var hours = String(now.getHours()).padStart(2, '0');
+      var minutes = String(now.getMinutes()).padStart(2, '0');
+      var seconds = String(now.getSeconds()).padStart(2, '0');
+
+      var formatted = dayName + ', ' + dayNum + ' ' + monthName + ' ' + year + ' | ' + hours + ':' + minutes + ':' + seconds;
+      document.getElementById('date_time').innerText = formatted;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Automatic Soft Background Slideshow
+    var slides = document.querySelectorAll('.bg-slide');
+    var slideIndex = 0;
+
+    function nextSlide() {
+      if (slides.length <= 1) return;
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }
+
+    setInterval(nextSlide, 5000);
+  </script>
+</body>
+
+</html>

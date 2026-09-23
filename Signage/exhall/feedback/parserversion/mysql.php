@@ -1,4 +1,5 @@
 <?php
+@mysqli_report(MYSQLI_REPORT_OFF);
 
 # PHP MySQL to MySQLi migration shim library
 #	purpose: Redefines deprecated or missing mysql_ functions and calls mysqli_ functions for PHP5.5+.
@@ -367,8 +368,11 @@ if (!extension_loaded('mysql')) {
 	# int mysql_errno ([ resource $link_identifier = NULL ] )
 	# int mysqli_errno ( mysqli $link )
 	function mysql_errno($link_identifier = NULL) {
-		# mysql_errno/mysqli_errno = returns a number, 0 if no error
-		$temp = mysqli_errno (mysql_ensure_link($link_identifier));
+		$link = mysql_ensure_link($link_identifier);
+		if (!$link || !($link instanceof mysqli)) {
+			return mysqli_connect_errno();
+		}
+		$temp = mysqli_errno($link);
 		if ($temp === NULL) {
 			return false;
 		}
@@ -379,8 +383,11 @@ if (!extension_loaded('mysql')) {
 	# string mysql_error ([ resource $link_identifier = NULL ] )
 	# string mysqli_error ( mysqli $link )
 	function mysql_error($link_identifier = NULL) {
-		# mysql_error/mysqli_error = returns empty string on no error
-		$temp = mysqli_error(mysql_ensure_link($link_identifier));
+		$link = mysql_ensure_link($link_identifier);
+		if (!$link || !($link instanceof mysqli)) {
+			return mysqli_connect_error() ?: "Koneksi ke database MySQL gagal";
+		}
+		$temp = mysqli_error($link);
 		if ($temp === NULL) {
 			return false;
 		}
